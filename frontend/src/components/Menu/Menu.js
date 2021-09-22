@@ -6,10 +6,11 @@ export default function Menu() {
   const [state, setState] = useState(false);
   const isHide = classname({'sr-only': state});
   const handleMenu = () => {
+
+    if (state) document.body.classList.remove('is-collapse');
+    else document.body.classList.add('is-collapse');
+
     setState(!state);
-    console.log({
-      state
-    });
   };
 
   return (

@@ -5,8 +5,7 @@ body {
     "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding: 16px;
-  background-color: rgba(51, 51, 51, 0.071);
+  background-color: #f9fafb;
 }
 
 h1,

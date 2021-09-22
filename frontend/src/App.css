@@ -1,7 +1,11 @@
-#root{
-    display: flex;
-    flex-direction: row;
-}
 .App__title {
     text-align: center;
+}
+.Main {
+    padding-left: 165px;
+    transition: all 0.2s ease;
+}
+
+.is-collapse .Main {
+    padding-left: 70px
 }

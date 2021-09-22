@@ -1,5 +1,5 @@
 import './App.css';
-import Dashboard from './pages/Dashboard/Dashboard';
+import DashboardPage from './pages/Dashboard/Dashboard.page';
 import Menu from './components/Menu/Menu'
 import TopBar from './components/TopBar/TopBar';
 
@@ -9,7 +9,7 @@ function App() {
       <Menu />
       <TopBar/>
       <main className="Main">
-        <Dashboard />
+        <DashboardPage />
       </main></>
   );
 }

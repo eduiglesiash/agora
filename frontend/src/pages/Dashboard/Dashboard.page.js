@@ -1,7 +1,7 @@
-import './Dashboard.css';
+import './Dashboard.page.css';
 import Book from '../../components/Book/Book'
 
-export default function Dashboard(){
+export default function DashboardPage(){
     return (
         <section className="Dashboard">
             <Book/>

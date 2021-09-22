@@ -1,0 +1,8 @@
+.TopBar {
+    margin-left: 60px;
+    width: calc(100% - 60px) ;
+    height: 61px;
+    background-color: #fff;
+    border-bottom: 1px solid #213c60;
+    padding: 16px;
+}

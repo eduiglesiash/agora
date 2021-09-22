@@ -9,7 +9,6 @@ function App() {
       <Menu />
       <TopBar/>
       <main className="Main">
-        <h1 className="App__title">Agora | Tu app de gestión de bibliotecas</h1>
         <Dashboard />
       </main></>
   );

@@ -1,0 +1,36 @@
+.Menu {
+    margin-top: 60px;
+    background-color: #213c60;
+    position: relative;
+}
+
+.Menu__link{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #fff;
+    padding: 12px 16px;
+    background-color: #213c60;
+}
+.Menu__link:hover {
+    background-color: rgb(34, 87, 147);
+}
+
+.Menu__link i {
+    font-size: 24px;
+}
+
+.Menu__btn {
+    position: absolute;
+    left: 0;
+    top: -59px;
+    width: 60px;
+    height: 60px;
+    color: #213c60;
+    border: 1px solid #213c60;
+    background-color: #fff;
+}
+
+.Menu__btn i{
+    font-size: 28px;
+}

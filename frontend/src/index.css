@@ -17,8 +17,18 @@ ul {
   padding: 0;
   list-style: none;
 }
-
+img {
+  width: 100%;
+}
+small {
+  display: block;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+p {
+  margin: 0;
+  line-height: 1.5;
 }

@@ -20,3 +20,18 @@ Green: #5AA469
 Red: #D35D6E
 Yellow: #F8D49D
 Purple: #6C5070
+Grises: #efefef;
+
+Para los Fondos de los bloques #213c60 
+Con el texto en blanco
+
+
+## Fuentes
+
+Para textos NOTO SANS de Google Fonts
+
+# Botones
+
+Cancelar con el border en azul o el color que corresponda el texto del mismo color 
+Disabled con la opacidad al .5
+Aceptar en el Azul 100%

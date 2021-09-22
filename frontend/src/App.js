@@ -1,5 +1,6 @@
 import './App.css';
 import Book from './components/Book/Book.js'
+import Dashboard from './pages/Dashboard/Dashboard';
 
 function App() {
   return (
@@ -10,9 +11,7 @@ function App() {
         <li>Vista detalle de un libro</li>
       </ul>
 
-      <Book/>
-      <Book/>
-      <Book/>
+      <Dashboard/>
     </main>
   );
 }

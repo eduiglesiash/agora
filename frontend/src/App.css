@@ -1,1 +1,7 @@
-
+#root{
+    display: flex;
+    flex-direction: row;
+}
+.App__title {
+    text-align: center;
+}

@@ -1,18 +1,15 @@
 import './App.css';
-import Book from './components/Book/Book.js'
 import Dashboard from './pages/Dashboard/Dashboard';
+import Menu from './components/Menu/Menu'
 
 function App() {
   return (
-    <main>
-      <h1>Agora | Tu app de gestión de bibliotecas</h1>
-      <ul>
-        <li>Listado de libros en la biblioteca</li>
-        <li>Vista detalle de un libro</li>
-      </ul>
-
-      <Dashboard/>
-    </main>
+    <>
+      <Menu />
+      <main>
+        <h1 className="App__title">Agora | Tu app de gestión de bibliotecas</h1>
+        <Dashboard />
+      </main></>
   );
 }
 

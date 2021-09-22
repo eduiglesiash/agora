@@ -3,8 +3,7 @@ import Book from '../../components/Book/Book'
 
 export default function Dashboard(){
     return (
-        <section>
-            <h2> Esto es el Dashboard</h2>
+        <section className="Dashboard">
             <Book/>
             <Book/>
             <Book/>

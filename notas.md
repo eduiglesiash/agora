@@ -30,8 +30,12 @@ Con el texto en blanco
 
 Para textos NOTO SANS de Google Fonts
 
-# Botones
+## Botones
 
 Cancelar con el border en azul o el color que corresponda el texto del mismo color 
 Disabled con la opacidad al .5
 Aceptar en el Azul 100%
+
+
+## Dashboard de ejemplo 
+https://colorlib.com/polygon/adminator/index.html

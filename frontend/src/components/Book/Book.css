@@ -5,8 +5,15 @@
     padding: 16px;
     background-color: white;
     margin-bottom: 24px;
-    box-shadow: 0 4px 16px rgb(0 0 0 / 8%);
-    border-left: 6px solid #5AA469;
+    border: 1px solid #dadce0;
+    border-left:6px solid #5aa469;
+    border-radius: 8px;
+    color: #202124;
+}
+.Book:hover,.Book:focus {
+    cursor: pointer;
+    transform: translateY(-1px);
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
 }
 .Book__cover {
     width: 75px;

@@ -1,11 +1,11 @@
 import './Avatar.css';
 
-export default function Avatar({thumbnail, name}){
-    const srcImage = thumbnail || 'https://eu.ui-avatars.com/api/?name=John+Doe'
-    const altImage = name || 'Alt no declarado'
-    return (
-        <figure className="Avatar">
-          <img src={srcImage} alt={altImage} />
-        </figure>
-    )
+export default function Avatar({ id, thumbnail, name }) {
+  const src = `https://randomuser.me/api/portraits/lego/${id}.jpg`
+  const altImage = name || 'Alt no declarado'
+  return (
+    <figure className="Avatar a-flex-basis-10">
+      <img src={src} alt={altImage} />
+    </figure>
+  )
 }

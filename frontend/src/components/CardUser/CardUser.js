@@ -4,8 +4,8 @@ import Avatar from '../Avatar/Avatar'
 
 export default function CardUser() {
   return (
-    <article className="Card__users">
-      <Avatar />
+    <article className="Card__users a-fade-in">
+      <Avatar id="1"/>
       <div className="a-flex a-flex-column a-flex-sBetween">
         <h3>Eduardo Iglesias Hernández</h3>
         <p>112132342-M</p>

@@ -2,7 +2,7 @@ import './Book.css';
 
 export default function Book() {
   return (
-    <a href="#bookDetails" className="Book">
+    <a href="#bookDetails" className="Book a-fade-in">
         <picture className="Book__cover">
           <img src="http://books.google.com/books/content?id=HGa1DQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" alt="Imagen de portada del libro en cuestion" />
         </picture>

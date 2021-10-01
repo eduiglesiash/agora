@@ -2,7 +2,7 @@ import './Book.css';
 
 export default function Book() {
   return (
-    <article className="Book">
+    <a href="#bookDetails" className="Book">
         <picture className="Book__cover">
           <img src="http://books.google.com/books/content?id=HGa1DQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api" alt="Imagen de portada del libro en cuestion" />
         </picture>
@@ -15,7 +15,7 @@ export default function Book() {
         <p className="Book__counts">1</p>
         <p className="Book__status"><strong>Disponible</strong></p>
         {/* <p className="Book__status"><strong>Prestados 1/1</strong></p> */}
-    </article>
+    </a>
   );
 }
 

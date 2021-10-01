@@ -1,4 +1,6 @@
 import './Menu.css';
+import { config } from '../../config/config';
+import { Link } from 'wouter';
 import React, {useState} from 'react';
 import classname from 'classname';
 
@@ -24,22 +26,22 @@ export default function Menu() {
       </button>
       <ul className="Menu__list">
         <li>
-          <a className="Menu__link" href="#dashboard">
+          <Link className="Menu__link" href={config.paths.dashboard}>
             <i className="ri-dashboard-line"/>
             <span className={isHide}>Dashboard</span>
-          </a>
+          </Link>
         </li>
         <li>
-          <a className="Menu__link" href="#books">
+          <Link className="Menu__link" href={config.paths.books}>
             <i className="ri-book-line"/>
             <span className={isHide}>Libros</span>
-          </a>
+          </Link>
         </li>
         <li>
-          <a className="Menu__link" href="#users">
+          <Link className="Menu__link" href={config.paths.users}>
             <i className="ri-user-line"/>
             <span className={isHide}>Usuarios</span>
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>

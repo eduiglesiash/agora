@@ -1,7 +1,8 @@
 .Avatar {
     margin: 8px;
+    width: 100px;
 }
 .Avatar img {
-    width: 100%;
+    width: 75px;
     border-radius: 9999em;
 }

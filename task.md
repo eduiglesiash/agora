@@ -1,6 +1,6 @@
 # Frontend
 
- - [] Crear una modal
+ - [x] Crear una modal
  - [] Crear vista detalle de los usuarios. Se levantará en una modal donde se mostrará la siguiente información:
      - Nombre Apellidos 
      - Identificador 

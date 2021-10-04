@@ -4,10 +4,10 @@
 
 body {
   margin: 0;
-  font-family: "Noto Sans Display", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
-    font-weight: 400;
+  font-family: "Noto Sans Display", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f9fafb;
@@ -6911,72 +6911,155 @@ button {
   content: "\f2df";
 }
 
+/* Overrides */
+.ReactModal__Body--open {
+  overflow: hidden;
+}
 
 /* AgoraStyles  */
 
 /* paddings */
-.a-p-16 {padding: 16px;}
+.a-p-16 {
+  padding: 16px;
+}
 
 /* flex */
-.a-flex {display: flex;}
-.a-flex-row { flex-direction: row; }
-.a-flex-column { flex-direction: column; }
-.a-flex-sBetween { justify-content: space-between;}
-.a-flex-basis-10 {flex-basis: 10%}
-.a-flex-basis-25 {flex-basis: 25%}
-.a-flex-shrink-1 {flex-shrink: 1;}
-.a-flex-grow-1 {flex-grow: 1;}
-.a-flex-align-self-center {align-self: center;}
+.a-flex {
+  display: flex;
+}
+.a-flex-row {
+  flex-direction: row;
+}
+.a-flex-column {
+  flex-direction: column;
+}
+.a-flex-sBetween {
+  justify-content: space-between;
+}
+.a-flex-basis-10 {
+  flex-basis: 10%;
+}
+.a-flex-basis-15 {
+  flex-basis: 15%;
+}
+.a-flex-basis-25 {
+  flex-basis: 25%;
+}
+.a-flex-shrink-1 {
+  flex-shrink: 1;
+}
+.a-flex-grow-1 {
+  flex-grow: 1;
+}
+.a-flex-align-self-center {
+  align-self: center;
+}
 
 /* buttons */
-.a-btn__icon { width: 50px; height: 50px; border-radius: 6px; transition: all .4s cubic-bezier(0.79, -0.01, 0.2, 0.97)}
-.a-btn__icon i{ color: #213c60;}
+.a-btn__icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  transition: all 0.4s cubic-bezier(0.79, -0.01, 0.2, 0.97);
+}
+.a-btn__icon i {
+  color: #213c60;
+}
 .a-btn__icon:hover,
-.a-btn__icon:focus { outline: none; background-color: #213c60}
+.a-btn__icon:focus {
+  outline: none;
+  background-color: #213c60;
+}
 .a-btn__icon:hover i,
-.a-btn__icon:focus i{ color: white}
+.a-btn__icon:focus i {
+  color: white;
+}
 
 /* fonts */
-.a-fs-18{ font-size: 18px;}
-.a-fs-24{ font-size: 24px;}
-
+.a-fs-18 {
+  font-size: 18px;
+}
+.a-fs-24 {
+  font-size: 24px;
+}
+.a-fs-36 {
+  font-size: 36px;
+}
 
 /* colors */
 
-.a-green {color: #5AA469}
-.a-red {color:#D35D6E }
-.a-yellow {color: #F8D49D}
-.a-purple {color: #6C5070}
-.a-grey {color:#efefef;}
-.a-blue{color: #213c60} 
-.a-primary {color: #202124}
+.a-green {
+  color: #5aa469;
+}
+.a-red {
+  color: #d35d6e;
+}
+.a-yellow {
+  color: #f8d49d;
+}
+.a-purple {
+  color: #6c5070;
+}
+.a-grey {
+  color: #efefef;
+}
+.a-blue {
+  color: #213c60;
+}
+.a-primary {
+  color: #202124;
+}
 
-.a-bk-green {background-color: #5AA469}
-.a-bk-red {background-color:#D35D6E }
-.a-bk-yellow {background-color: #F8D49D}
-.a-bk-purple {background-color: #6C5070}
-.a-bk-grey {background-color:#efefef;}
-.a-bk-blue{background-color: #213c60} 
+.a-bk-green {
+  background-color: #5aa469;
+}
+.a-bk-red {
+  background-color: #d35d6e;
+}
+.a-bk-yellow {
+  background-color: #f8d49d;
+}
+.a-bk-purple {
+  background-color: #6c5070;
+}
+.a-bk-grey {
+  background-color: #efefef;
+}
+.a-bk-blue {
+  background-color: #213c60;
+}
 
 /* Box Shadow */
 
-.a-box-shadow {box-shadow: 0 4px 16px rgb(0 0 0 / 8%)}
-
+.a-box-shadow {
+  box-shadow: 0 4px 16px rgb(0 0 0 / 8%);
+}
 
 /* Animations */
 .a-fade-in {
   opacity: 1;
-  animation: fadeIn .5s linear;
+  animation: fadeIn 0.5s linear;
 }
-
 
 @keyframes fadeIn {
-  0% {opacity: 0;}
-  50% { opacity: .5s }
-  100% { opacity: 1 }
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5s;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 @keyframes fadeOut {
-  0% {opacity: 1;}
-  50% { opacity: .5s }
-  100% { opacity: 0 }
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5s;
+  }
+  100% {
+    opacity: 0;
+  }
 }

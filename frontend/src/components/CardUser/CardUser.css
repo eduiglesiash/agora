@@ -10,9 +10,10 @@
     flex-wrap: nowrap;
 }
 .Card__users > * {
+    flex-basis: 100%;
+}
+.Card__users picture {
     flex-basis: auto;
-    flex-shrink: 1;
-    flex-grow: 1;
 }
 .Card__users:hover {
     transform: translateY(-1px);

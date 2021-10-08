@@ -1,6 +1,7 @@
 import './CardUser.css'
 import { useState } from 'react';
-import Book from '../Book/Book'
+import { Link } from 'wouter'
+import { config } from '../../config/config'
 import Avatar from '../Avatar/Avatar'
 import Modal from 'react-modal'
 
@@ -45,25 +46,25 @@ export default function CardUser() {
         <p>Libros totales: 88</p>
         <p>Libros prestados: 2</p>
       </div>
-      <div>
+      <div class="a-flex-align-self-center">
         <h4>Próximo vencimiento: </h4>
         <ul>
           <li>4/OCT/2021</li>
         </ul>
       </div>
-      <div className="a-flex-align-self-center">
+      <div className="a-flex-align-self-center a-flex a-flex-center">
         <ul className="a-flex a-flex-row">
-          <li>
+          <li class="a-margin-right-16">
             <button className="a-btn__icon" onClick={openModal}>
               <i className="ri-eye-line a-fs-24"></i>
               <span className="sr-only">Ver ficha de usuario</span>
             </button>
           </li>
           <li>
-            <button className="a-btn__icon">
+            <Link href={config.paths.userDetail + `/eliddelusuario`} className="a-btn__icon a-lh-2 a-block">
               <i className="ri-edit-line a-fs-24"></i>
               <span className="sr-only">Editar ficha de usuario</span>
-            </button>
+            </Link>
           </li>
         </ul>
       </div>

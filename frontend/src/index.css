@@ -6936,6 +6936,9 @@ button {
 .a-flex-sBetween {
   justify-content: space-between;
 }
+.a-flex-center {
+  justify-content: center;
+}
 .a-flex-basis-10 {
   flex-basis: 10%;
 }
@@ -6985,6 +6988,25 @@ button {
 .a-fs-36 {
   font-size: 36px;
 }
+
+/* line height  */
+
+.a-lh-2 {
+  line-height: 2;
+}
+
+
+/* layout */
+.a-block {
+  display: block;
+}
+
+
+/* margin */
+
+.a-margin-right-16 {
+  margin-right: 16px;
+} 
 
 /* colors */
 

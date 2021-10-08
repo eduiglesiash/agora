@@ -2,7 +2,8 @@ export const config = {
     paths: {
         dashboard: '/',
         books: '/books',
-        users: '/users'
+        users: '/users',
+        userDetail: '/userDetail'
     },
     colorTags: {
         success: 'Tag__success',

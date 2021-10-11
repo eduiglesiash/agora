@@ -20,6 +20,7 @@ const customStyles = {
   },
 };
 Modal.setAppElement('#root');
+
 export default function CardUser() {
   const [modalIsOpen, setIsOpen] = useState(false);
   function openModal() {
@@ -46,7 +47,7 @@ export default function CardUser() {
         <p>Libros totales: 88</p>
         <p>Libros prestados: 2</p>
       </div>
-      <div class="a-flex-align-self-center">
+      <div className="a-flex-align-self-center">
         <h4>Próximo vencimiento: </h4>
         <ul>
           <li>4/OCT/2021</li>
@@ -54,7 +55,7 @@ export default function CardUser() {
       </div>
       <div className="a-flex-align-self-center a-flex a-flex-center">
         <ul className="a-flex a-flex-row">
-          <li class="a-margin-right-16">
+          <li className="a-margin-right-16">
             <button className="a-btn__icon" onClick={openModal}>
               <i className="ri-eye-line a-fs-24"></i>
               <span className="sr-only">Ver ficha de usuario</span>

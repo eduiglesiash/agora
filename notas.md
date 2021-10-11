@@ -39,3 +39,6 @@ Aceptar en el Azul 100%
 
 ## Dashboard de ejemplo 
 https://colorlib.com/polygon/adminator/index.html
+
+## Back con Strapi (https://strapi.io/)
+

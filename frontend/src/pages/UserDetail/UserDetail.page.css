@@ -1,3 +1,15 @@
-.userDetailPage{
-    color: red
+.udp__btn {
+   padding: 8px 16px;
+   margin-right: 16px;
+   color: white;
+   font-size: 16px;
+   cursor: pointer;
+   border-radius: 6px;
+}
+.udp__btn--cancel:hover {
+  background-color: #d0455a;
+}
+
+.udp__btn--success:hover {
+  background-color: #2ba443
 }

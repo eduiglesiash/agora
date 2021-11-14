@@ -20,6 +20,7 @@
 }
 .Book__title {
     padding: 8px;
+    min-width: 300px;
 }
 .Book__title small{
     font-weight: 400;
@@ -28,6 +29,7 @@
     padding: 8px;
     color: rgb(165, 165, 165);
     text-align: center;
+    width: 130px;
 }
 .Book__isbn strong{ 
     display: block;

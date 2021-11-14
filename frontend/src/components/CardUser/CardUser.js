@@ -14,14 +14,14 @@ const customStyles = {
     display: 'flex',
     flexDirection: 'column',
     width: '60%',
+    height: 'auto',
     border: 'none',
     boxShadow: '0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%)',
-    height: '200px'
   },
 };
 Modal.setAppElement('#root');
 
-export default function CardUser() {
+export default function CardUser({ codeUser, email, name, phone, surname, totalBookRead, avatar, created_at }) {
   const [modalIsOpen, setIsOpen] = useState(false);
   function openModal() {
     setIsOpen(true);
@@ -37,14 +37,14 @@ export default function CardUser() {
   }
   return (
     <article className="Card__users a-fade-in">
-      <Avatar id="1" />
+      <Avatar thumbnail={avatar} />
       <div className="a-flex a-flex-column a-flex-sBetween">
-        <h3>Eduardo Iglesias Hernández</h3>
-        <p>112132342-M</p>
-        <p>Desde: 1/Ago/2020</p>
+        <h3>{name} {surname}</h3>
+        <p>{codeUser}</p>
+        <p>Desde: {created_at}</p>
       </div>
       <div className="a-flex a-flex-column a-flex-sBetween">
-        <p>Libros totales: 88</p>
+        <p>Libros totales: {totalBookRead}</p>
         <p>Libros prestados: 2</p>
       </div>
       <div className="a-flex-align-self-center">
@@ -83,19 +83,20 @@ export default function CardUser() {
           </button>
         </header>
         <section className="Modal__content">
-          <Avatar id="1" />
-          <div>
-            <h3>Eduardo Iglesias Hernández</h3>
-            <p>112132342-M</p>
+          <div className="a-flex ">
+            <Avatar thumbnail={avatar} />
+            <div>
+              <h3>{name} {surname}</h3>
+              <ul>
+                <li>{codeUser}</li>
+                <li>{phone}</li>
+                <li> {email}</li>
+              </ul>
+            </div>
           </div>
           <div>
-            <h4>Datos personales</h4>
-            <p> Teléfono de contacto</p>
-            <p> Email </p>
-          </div>
-          <div>
-            <p>Desde: 1/Ago/2020</p>
-            <p>Libros totales: 88</p>
+            <p>Desde: {created_at}</p>
+            <p>Libros totales: {totalBookRead}</p>
             <p>Libros prestados: 2</p>
           </div>
         </section>

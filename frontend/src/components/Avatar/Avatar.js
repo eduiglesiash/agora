@@ -1,11 +1,21 @@
 import './Avatar.css';
+import { config } from '../../config/config'
 
-export default function Avatar({ id, thumbnail, name }) {
-  const src = `https://randomuser.me/api/portraits/lego/${id}.jpg`
-  const altImage = name || 'Alt no declarado'
+
+export default function Avatar({ thumbnail, name }) {
+
+  const ramdonID = Math.floor(Math.random() * 10);
+  
+  const generateURLImage = () => {
+    if (thumbnail) {
+      return config.strapi.path + thumbnail[0].url
+    } else {
+      return `https://randomuser.me/api/portraits/lego/${ramdonID}.jpg`
+    }
+  }
   return (
     <picture className="Avatar">
-      <img src={src} alt={altImage} />
+      <img src={generateURLImage()} alt="" />
     </picture>
   )
 }

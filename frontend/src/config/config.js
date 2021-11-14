@@ -10,5 +10,8 @@ export const config = {
         info: 'Tag__info',
         warning: 'Tag__warning',
         alert: 'Tag__alert'
+    },
+    strapi: {
+      path: 'http://localhost:1337'
     }
 }

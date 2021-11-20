@@ -1,6 +1,6 @@
 # Notas para Ágora
 
-## Sistema de búsqueda. ISNB
+## Sistema de búsqueda. ISBN
 
 Después de buscar varias opciones de búsqueda de libros por ISNB de forma gratuita, la mejor opción que hemos encontrado ha sido Google API
 

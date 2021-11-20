@@ -42,3 +42,4 @@ https://colorlib.com/polygon/adminator/index.html
 
 ## Back con Strapi (https://strapi.io/)
 
+http://localhost:1337/admin/auth/register?registrationToken=eafa2d666a6aebec77d1b848069a2a6502e17507

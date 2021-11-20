@@ -3,7 +3,7 @@ import { config } from '../../config/config';
 import { Link } from 'wouter';
 import React, {useState} from 'react';
 import classname from 'classname';
-import { FcMenu, FcTemplate, FcKindle, FcReading } from "react-icons/fc";
+import { FcMenu, FcTemplate, FcKindle, FcConferenceCall } from "react-icons/fc";
 
 export default function Menu() {
   const [state, setState] = useState(false);
@@ -36,7 +36,7 @@ export default function Menu() {
         </li>
         <li>
           <Link className="Menu__link" href={config.paths.users}>
-            <FcReading size="34px"/>
+            <FcConferenceCall size="34px"/>
             <span className={isHide}>Usuarios</span>
           </Link>
         </li>

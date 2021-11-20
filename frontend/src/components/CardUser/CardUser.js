@@ -4,6 +4,9 @@ import { Link } from 'wouter'
 import { config } from '../../config/config'
 import Avatar from '../Avatar/Avatar'
 import Modal from 'react-modal'
+import { FcInfo, FcDataConfiguration } from "react-icons/fc";
+import { VscChromeClose } from "react-icons/vsc";
+
 
 const customStyles = {
   content: {
@@ -57,13 +60,13 @@ export default function CardUser({ codeUser, email, name, phone, surname, totalB
         <ul className="a-flex a-flex-row">
           <li className="a-margin-right-16">
             <button className="a-btn__icon" onClick={openModal}>
-              <i className="ri-eye-line a-fs-24"></i>
+              <FcInfo size="30px"/>
               <span className="sr-only">Ver ficha de usuario</span>
             </button>
           </li>
           <li>
-            <Link href={config.paths.userDetail + `/eliddelusuario`} className="a-btn__icon a-lh-2 a-block">
-              <i className="ri-edit-line a-fs-24"></i>
+            <Link href={config.paths.userDetail + `/eliddelusuario`} className="a-btn__icon a-lh-2 a-flex a-flex-center a-flex-align-item">
+              <FcDataConfiguration size="30px"/>
               <span className="sr-only">Editar ficha de usuario</span>
             </Link>
           </li>
@@ -78,7 +81,7 @@ export default function CardUser({ codeUser, email, name, phone, surname, totalB
       >
         <header>
           <button className="a-btn__icon" onClick={closeModal}>
-            <i className="ri-close-line a-fs-24"></i>
+            <VscChromeClose size="34px"/> 
             <span className="sr-only">Cerrar ventana de dialogo </span>
           </button>
         </header>

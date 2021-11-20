@@ -147,25 +147,20 @@ label {
 .a-flex-align-self-center {
   align-self: center;
 }
+.a-flex-align-item {
+  align-items: center;
+}
 
 /* buttons */
 .a-btn__icon {
   width: 50px;
   height: 50px;
   border-radius: 6px;
-  transition: all 0.4s cubic-bezier(0.79, -0.01, 0.2, 0.97);
+  border: 2px solid transparent;
 }
-.a-btn__icon i {
-  color: #213c60;
-}
-.a-btn__icon:hover,
-.a-btn__icon:focus {
-  outline: none;
-  background-color: #213c60;
-}
-.a-btn__icon:hover i,
-.a-btn__icon:focus i {
-  color: white;
+
+.a-btn__icon:hover {
+  border: 2px solid #b0b9c1;
 }
 
 /* fonts */
@@ -185,18 +180,16 @@ label {
   line-height: 2;
 }
 
-
 /* layout */
 .a-block {
   display: block;
 }
 
-
 /* margin */
 
 .a-margin-right-16 {
   margin-right: 16px;
-} 
+}
 
 /* colors */
 
@@ -238,7 +231,7 @@ label {
   background-color: #efefef;
 }
 .a-bk-blue {
-  background-color: #213c60;
+  background-color: #051e34;
 }
 
 /* Box Shadow */

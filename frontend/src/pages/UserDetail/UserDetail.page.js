@@ -1,22 +1,33 @@
 import './UserDetail.page.css';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Avatar from '../../components/Avatar/Avatar'
 import Book from '../../components/Book/Book'
+import * as strapi from '../../api/users.api'
 
-export default function UserDetailPage(user) {
-
+export default function UserDetailPage({ params }) {
+  const [user, setUser] = useState({})
   const [stateForm, setStateForm] = useState({
-    mainName: 'Eduardo',
-    surname: 'Iglesias Hernández',
-    phone: '636848710',
-    email: 'edu.iglesias.hernandez@gmail.com'
+    name: '',
+    surname: '',
+    phone: '',
+    email: ''
   })
   const [stateBtnSave, setStateBtnSave] = useState(false)
+
+  useEffect(() => {
+    strapi.getUserByID(params.id)
+      .then(user => {
+        const { name, surname, phone, email } = user.data
+        setUser(user.data)
+        setStateForm({ name, surname, phone, email })
+      })
+  }, [params])
+
 
   const handleMainName = (e) => {
     setStateForm({
       ...stateForm,
-      mainName: e.target.value
+      name: e.target.value
     })
     setStateBtnSave(true)
     console.log({ stateForm })
@@ -49,16 +60,34 @@ export default function UserDetailPage(user) {
     console.log({ stateForm })
   }
 
+  const handleResetForm = (e) => {
+    e.preventDefault()
+    console.log({ user })
+    const { name, surname, phone, email } = user
+    setStateForm({ name, surname, phone, email })
+    setStateBtnSave(false)
+  }
+
+  const handleSaveChanges = (e) => {
+    e.preventDefault()
+    strapi.updateUser({ ...user, ...stateForm })
+      .then(userUpdated => { 
+        setUser(userUpdated.data)
+        setStateBtnSave(false)
+       })
+      .catch(err => console.log({ err }))
+  }
+
   return (
     <section className="a-flex">
       <section className="a-p-16 a-flex-basis-50">
-        <Avatar id="1" />
+        <Avatar thumbnail={user.avatar} />
         <form>
           <fieldset>
             <legend className="sr-only"> Datos Personales</legend>
             <div>
               <label htmlFor="mainName">Nombre</label>
-              <input id="mainName" name="mainName" type="text" value={stateForm.mainName} onChange={handleMainName} />
+              <input id="mainName" name="mainName" type="text" value={stateForm.name} onChange={handleMainName} />
             </div>
             <div>
               <label htmlFor="surname">Apellidos</label>
@@ -76,8 +105,8 @@ export default function UserDetailPage(user) {
           {
             stateBtnSave &&
             <>
-              <button className="udp__btn udp__btn--cancel a-bk-red" onClick="handleResetForm">Descartar cambios</button>
-              <button className="udp__btn udp__btn--success a-bk-green" onClick="handleSaveChanges">Guardar cambios</button>
+              <button className="udp__btn udp__btn--cancel a-bk-red" onClick={handleResetForm}>Descartar cambios</button>
+              <button className="udp__btn udp__btn--success a-bk-green" onClick={handleSaveChanges}>Guardar cambios</button>
             </>
           }
         </form>

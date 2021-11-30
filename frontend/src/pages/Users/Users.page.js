@@ -5,6 +5,7 @@ import {VscChromeClose} from 'react-icons/vsc';
 import * as strapi from '../../api/users.api';
 import {useState, useEffect} from 'react';
 import {useFormik} from 'formik';
+import {toast, ToastContainer} from 'react-toastify';
 
 const customStyleModal = {
   content: {
@@ -29,8 +30,9 @@ export default function UsersPage() {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    strapi.getUsers().then(users => {
-      console.log({users: users.data});
+    strapi.getUsers()
+      .then(users => {
+      // console.log({users: users.data});
       setUsers(users.data);
     });
   }, []);
@@ -79,6 +81,10 @@ export default function UsersPage() {
     }
   });
 
+  toast('🦄 Wow so easy!', {
+    position: toast.POSITION.TOP_RIGHT,
+    draggable: false
+  });
   return (
     <>
       <section className="a-p-16 a-flex a-flex-center">
@@ -100,6 +106,7 @@ export default function UsersPage() {
           />))
         }
       </section>
+
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}

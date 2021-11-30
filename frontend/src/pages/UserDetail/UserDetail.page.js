@@ -55,7 +55,7 @@ export default function UserDetailPage({ params }) {
       console.log(`On Submit`)
       strapi.deleteUser(user.id)
         .then(user => {
-          console.log({ user })
+          // console.log({ user })
           setLocation('/users')
           closeModal()
 
@@ -114,10 +114,6 @@ export default function UserDetailPage({ params }) {
 
   const isFieldModified= ()=> {
     const { name, surname, phone, email } = user;
-    console.log({ name, surname, phone, email })
-    console.log(`-----------------------------`)
-    console.log({values: updateFormUser.values})
-
     return updateFormUser.values.name !== name || updateFormUser.values.surname !== surname || updateFormUser.values.phone !== phone || updateFormUser.values.email !== email
   }
 

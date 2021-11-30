@@ -7,3 +7,4 @@ export const countUsers = ()=> axios.get(`${config.strapi.path}/libraries/counte
 export const getUserByID = (userId)=> axios.get(`${config.strapi.path}/users-libraries/${userId}`)
 export const updateUser = (user) => axios.put(`${config.strapi.path}/users-libraries/${user.id}`, user);
 export const addUser = (user) => axios.post(`${config.strapi.path}/users-libraries`, user);
+export const deleteUser = (userId) => axios.delete(`${config.strapi.path}/users-libraries/${userId}`)

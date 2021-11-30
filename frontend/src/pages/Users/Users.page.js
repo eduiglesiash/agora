@@ -1,10 +1,10 @@
 import './Users.page.css';
 import CardUser from '../../components/CardUser/CardUser';
-import Modal from 'react-modal'
-import { VscChromeClose } from 'react-icons/vsc';
-import * as strapi from '../../api/users.api'
-import { useState, useEffect } from 'react'
-import { useFormik } from 'formik';
+import Modal from 'react-modal';
+import {VscChromeClose} from 'react-icons/vsc';
+import * as strapi from '../../api/users.api';
+import {useState, useEffect} from 'react';
+import {useFormik} from 'formik';
 
 const customStyleModal = {
   content: {
@@ -18,8 +18,8 @@ const customStyleModal = {
     width: '60%',
     height: '600px',
     border: 'none',
-    boxShadow: '0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%)',
-  },
+    boxShadow: '0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%)'
+  }
 };
 Modal.setAppElement('#root');
 
@@ -30,17 +30,16 @@ export default function UsersPage() {
 
   useEffect(() => {
     strapi.getUsers().then(users => {
-      console.log({ users: users.data })
-      setUsers(users.data)
-    })
-  }, [])
+      console.log({users: users.data});
+      setUsers(users.data);
+    });
+  }, []);
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
   const afterOpenModal = () => {
-    // references are now sync'd and can be accessed.
-    console.log(`AfterOpenModal`)
-  }
+    console.log(`AfterOpenModal`);
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -50,31 +49,35 @@ export default function UsersPage() {
       email: ''
     },
     onSubmit: values => {
-      const phoneRegistred = users.map(user => user.phone);
-      if (phoneRegistred.includes(values.phone.toString())) {
-        console.log(`Usuario de registrado - Lanzar aviso`)
+      const nameAndSurnameRegistred = users.map(user => `${user.name} ${user.surname}`.toLowerCase().trim());
+      const nameAndSurnameNotRegistred = `${values.name} ${values.surname}`.toLowerCase().trim();
+      console.log({nameAndSurnameRegistred, nameAndSurnameNotRegistred});
+      if (nameAndSurnameRegistred.includes(nameAndSurnameNotRegistred)) {
+        console.log(`Usuario ya registrado - Lanzar aviso`);
       } else {
-        console.log('Usuario sin registrar')
+        console.log('Usuario sin registrar');
         const codeUser = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-        strapi.addUser({ ...values, codeUser, "totalBookRead": 0 })
+
+        // TODO: Serializar el nombre y los datos antes de guardarlo
+        strapi.addUser({...values, codeUser, 'totalBookRead': 0})
           .then(user => {
-            setUsers([...users, user.data])
+            setUsers([...users, user.data]);
             formik.resetForm({
               name: '',
               surname: '',
               phone: '',
               email: ''
-            })
-            closeModal()
+            });
+            closeModal();
           })
-          .catch(err => console.error(`No se ha podido registrar al usuario: \n ${err}`))
+          .catch(err => console.error(`No se ha podido registrar al usuario: \n ${err}`));
       }
     },
     onReset: values => {
-      console.log({ reset: values })
-      closeModal()
+      console.log({reset: values});
+      closeModal();
     }
-  })
+  });
 
   return (
     <>
@@ -106,7 +109,7 @@ export default function UsersPage() {
       >
         <header className="a-flex a-flex-end">
           <button className="a-btn__icon" onClick={closeModal}>
-            <VscChromeClose size="34px" />
+            <VscChromeClose size="34px"/>
             <span className="sr-only">Cerrar ventana de dialogo </span>
           </button>
         </header>
@@ -117,37 +120,37 @@ export default function UsersPage() {
               <div className="a-margin-bottom-16">
                 <label htmlFor="mainName">Nombre (Obligatorio)</label>
                 <input id="name" name="name" type="text"
-                  onChange={formik.handleChange}
-                  value={formik.values.name} required />
+                       onChange={formik.handleChange}
+                       value={formik.values.name} required/>
               </div>
               <div className="a-margin-bottom-16">
                 <label htmlFor="surname">Apellidos (Obligatorio)</label>
                 <input id="surname" name="surname" type="text"
-                  value={formik.values.surname}
-                  onChange={formik.handleChange} required />
+                       value={formik.values.surname}
+                       onChange={formik.handleChange} required/>
               </div>
               <div className="a-margin-bottom-16">
                 <label htmlFor="phone">Teléfono (Obligatorio)</label>
                 <input id="phone" name="phone" type="number"
-                  maxLength="9"
-                  value={formik.values.phone}
-                  onChange={formik.handleChange} required />
+                       maxLength="9"
+                       value={formik.values.phone}
+                       onChange={formik.handleChange} required/>
               </div>
               <div className="a-margin-bottom-16">
                 <label htmlFor="email">Dirección de email </label>
                 <input id="email" name="email" type="email"
-                  value={formik.values.email}
-                  onChange={formik.handleChange} />
+                       value={formik.values.email}
+                       onChange={formik.handleChange}/>
               </div>
             </fieldset>
             <div className="a-flex a-flex-center">
-              <button type="reset" className="a-btn__cancel">Cancelar Registro</button>
-              <button type="submit" className="a-btn__action">Registrar usuario</button>
+              <button type="reset" className="a-btn__cancel">Cancelar</button>
+              <button type="submit" className="a-btn__action">Registrar</button>
             </div>
           </form>
         </section>
 
       </Modal>
     </>
-  )
+  );
 }

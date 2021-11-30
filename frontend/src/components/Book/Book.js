@@ -1,8 +1,9 @@
+import { Link } from 'wouter';
 import './Book.css';
 
 export default function Book({title,author, imgURL, quantity, available, isbn}) {
   return (
-    <a href="#bookDetails" className="Book a-fade-in">
+    <Link href="#bookDetails" className="Book a-fade-in">
         <picture className="Book__cover">
           <img src={imgURL} alt={title} />
         </picture>
@@ -15,6 +16,6 @@ export default function Book({title,author, imgURL, quantity, available, isbn}) 
         <p className="Book__counts">{quantity}</p>
         <p className="Book__status"><strong>{available}</strong></p>
         {/* <p className="Book__status"><strong>Prestados 1/1</strong></p> */}
-    </a>
+    </Link>
   );
 }

@@ -79,6 +79,108 @@
     border-color: #F8D49D
 }
 
+.Book__add {
+    background-color: #5AA469;
+    border: 2px solid #5AA469;
+    border-radius: 50%;
+    bottom: 20px;
+    height: 46px;
+    position: fixed;
+    right: 20px;
+    transition: background-color .3s;
+    width: 46px;
+}
+.Book__add::before,
+.Book__add::after {
+    background-color: #efefef;
+    content: '';
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: background-color .3s;
+    width: 20px;
+}
+.Book__add::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+.Book__add:hover {
+    background-color: #efefef;
+}
+.Book__add:hover::before,
+.Book__add:hover::after {
+    background-color: #5AA469;
+}
+
+.Book__modal {
+    bottom: 0;
+    left: 165px;
+    position: absolute;
+    right: 0;
+    top: 60px;
+}
+.Book__modal::before {
+    background-color: #efefef;
+    bottom: 0;
+    content: '';
+    left: 0;
+    opacity: .7;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.Book__modal-content {
+    background-color: #ffffff;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    margin: 40px 0;
+    max-width: 80%;
+    overflow: auto;
+    padding: 40px 20px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+.Book__modal-header {
+    margin-bottom: 24px;
+}
+.Book__modal-close {
+    height: 46px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    transition: background-color .3s;
+    width: 46px;
+}
+.Book__modal-close::before,
+.Book__modal-close::after {
+    background-color: #202124;
+    content: '';
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: background-color .3s;
+    width: 20px;
+}
+.Book__modal-close::after {
+    transform: translate(-50%, -50%) rotate(135deg);
+}
+
+.Book__cta {
+    width: 100%;
+}
+
+.Book__paragraph {
+    margin: 24px 0 12px;
+    text-align: left;
+}
+
+.Book__description {
+    height: 120px;
+}
 
 @media all and (min-width: 768px) {
     .Book {

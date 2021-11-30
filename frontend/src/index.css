@@ -107,6 +107,12 @@ label {
   padding: 16px;
 }
 
+/* Text */
+
+.a-text-center {
+  text-align: center;
+}
+
 /* flex */
 .a-flex {
   display: flex;
@@ -150,6 +156,9 @@ label {
 .a-flex-align-item {
   align-items: center;
 }
+.a-flex-end {
+  justify-content: flex-end;
+}
 
 /* buttons */
 .a-btn__icon {
@@ -189,6 +198,9 @@ label {
 
 .a-margin-right-16 {
   margin-right: 16px;
+}
+.a-margin-bottom-16 {
+  margin-bottom: 16px;
 }
 
 /* colors */
@@ -234,12 +246,66 @@ label {
   background-color: #051e34;
 }
 
+/* BUTTON */
+.a-btn__action {
+  padding: 8px 24px;
+  color: white;
+  font-size: 18px;
+  border-radius: 6px;
+  background-color: #1b73e8;
+}
+.a-btn__action:hover {
+  background-color: #1353a7;
+}
+.a-btn__cancel {
+  padding: 8px 24px;
+  color: #d35d6e;
+  font-size: 18px;
+  border-radius: 6px;
+  background-color: transparent;
+}
+.a-btn__delete {
+  margin: 0 auto;
+  padding: 8px 24px;
+  color: #ce2c44;
+  border: 2px solid #ce2c44;
+  width: 60%;
+  font-size: 18px;
+  border-radius: 6px;
+  background-color: transparent;
+}
+.a-btn__delete:hover {
+  color: white;
+  background-color: #ce2c44
+}
+
 /* Box Shadow */
 
 .a-box-shadow {
   box-shadow: 0 4px 16px rgb(0 0 0 / 8%);
 }
 
+/* Form  */
+.a-form__legend {
+  margin-bottom: 24px;
+}
+.a-form__success {
+  border: 2px solid #5aa469;
+  border-radius: 8px;
+  color: #5aa469;
+  font-weight: bold;
+}
+.a-form__errorInput {
+  border: 2px solid #ce2c44;
+  border-radius: 8px;
+  color: #ce2c44;
+  font-weight: bold;
+}
+.a-form__errorText {
+  color: #ce2c44;
+  font-weight: bold;
+  text-align: center;
+}
 /* Animations */
 .a-fade-in {
   opacity: 1;

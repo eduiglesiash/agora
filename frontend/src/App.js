@@ -17,7 +17,7 @@ function App() {
 
       <Menu />
       <main className="Main">
-        <ToastContainer autoClose={2500}/>
+        <ToastContainer autoClose={5000} theme={'colored'}/>
         <Route path={config.paths.dashboard} component={DashboardPage} />
         <Route path={config.paths.users} component={UsersPage} />
         <Route path={config.paths.books} component={BooksPage} /> 

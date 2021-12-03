@@ -1,10 +1,12 @@
 import './Users.page.css';
+import { config } from '../../config/config';
 import CardUser from '../../components/CardUser/CardUser';
 import Modal from 'react-modal';
-import {VscChromeClose} from 'react-icons/vsc';
+import { VscChromeClose } from 'react-icons/vsc';
 import * as strapi from '../../api/users.api';
-import {useState, useEffect} from 'react';
-import {useFormik} from 'formik';
+import { useState, useEffect } from 'react';
+import { useFormik } from 'formik';
+import { toast } from 'react-toastify';
 
 const customStyleModal = {
   content: {
@@ -29,19 +31,18 @@ export default function UsersPage() {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    strapi.getUsers().then(users => {
-      console.log({users: users.data});
-      setUsers(users.data);
-    });
+    strapi.getUsers()
+      .then(users => {
+        // console.log({users: users.data});
+        setUsers(users.data);
+      })
+      .catch(err => toast.error(`${config.toastMessage.getUsersError}: \n ${err}`));
   }, []);
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
-  const afterOpenModal = () => {
-    console.log(`AfterOpenModal`);
-  };
 
-  const formik = useFormik({
+  const registerUser = useFormik({
     initialValues: {
       name: '',
       surname: '',
@@ -49,32 +50,37 @@ export default function UsersPage() {
       email: ''
     },
     onSubmit: values => {
-      const nameAndSurnameRegistred = users.map(user => `${user.name} ${user.surname}`.toLowerCase().trim());
-      const nameAndSurnameNotRegistred = `${values.name} ${values.surname}`.toLowerCase().trim();
-      console.log({nameAndSurnameRegistred, nameAndSurnameNotRegistred});
-      if (nameAndSurnameRegistred.includes(nameAndSurnameNotRegistred)) {
-        console.log(`Usuario ya registrado - Lanzar aviso`);
+      const nameAndSurnameRegistered = users.map(user => `${user.name} ${user.surname}`.toLowerCase().trim());
+      const nameAndSurnameNotRegistered = `${values.name} ${values.surname}`.toLowerCase().trim();
+      console.log({ nameAndSurnameRegistered, nameAndSurnameNotRegistered })
+      if (nameAndSurnameRegistered.includes(nameAndSurnameNotRegistered)) {
+
+        // TODO:  hay que limpiar espacios y tildes para evitar registros duplicados.
+        toast.error(config.toastMessage.userRegistered, {
+          position: toast.POSITION.TOP_CENTER
+        });
       } else {
-        console.log('Usuario sin registrar');
         const codeUser = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 
         // TODO: Serializar el nombre y los datos antes de guardarlo
-        strapi.addUser({...values, codeUser, 'totalBookRead': 0})
+        strapi.addUser({ ...values, codeUser, 'totalBookRead': 0 })
           .then(user => {
             setUsers([...users, user.data]);
-            formik.resetForm({
+            registerUser.resetForm({
               name: '',
               surname: '',
               phone: '',
               email: ''
             });
             closeModal();
+            toast.success(config.toastMessage.userRegisterSuccess);
           })
-          .catch(err => console.error(`No se ha podido registrar al usuario: \n ${err}`));
+          .catch(err => toast.error(`${config.toastMessage.userRegisterError}\n ${err}`, {
+            position: toast.POSITION.BOTTOM_CENTER
+          }));
       }
     },
     onReset: values => {
-      console.log({reset: values});
       closeModal();
     }
   });
@@ -100,47 +106,47 @@ export default function UsersPage() {
           />))
         }
       </section>
+
       <Modal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyleModal}
         contentLabel="Example Modal"
       >
         <header className="a-flex a-flex-end">
           <button className="a-btn__icon" onClick={closeModal}>
-            <VscChromeClose size="34px"/>
+            <VscChromeClose size="34px" />
             <span className="sr-only">Cerrar ventana de dialogo </span>
           </button>
         </header>
         <section>
-          <form onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
+          <form onSubmit={registerUser.handleSubmit} onReset={registerUser.handleReset}>
             <fieldset>
               <legend className="a-text-center a-margin-bottom-16">Registro de usuarios de la biblioteca</legend>
               <div className="a-margin-bottom-16">
                 <label htmlFor="mainName">Nombre (Obligatorio)</label>
                 <input id="name" name="name" type="text"
-                       onChange={formik.handleChange}
-                       value={formik.values.name} required/>
+                  onChange={registerUser.handleChange}
+                  value={registerUser.values.name} required />
               </div>
               <div className="a-margin-bottom-16">
                 <label htmlFor="surname">Apellidos (Obligatorio)</label>
                 <input id="surname" name="surname" type="text"
-                       value={formik.values.surname}
-                       onChange={formik.handleChange} required/>
+                  value={registerUser.values.surname}
+                  onChange={registerUser.handleChange} required />
               </div>
               <div className="a-margin-bottom-16">
                 <label htmlFor="phone">Teléfono (Obligatorio)</label>
                 <input id="phone" name="phone" type="number"
-                       maxLength="9"
-                       value={formik.values.phone}
-                       onChange={formik.handleChange} required/>
+                  maxLength="9"
+                  value={registerUser.values.phone}
+                  onChange={registerUser.handleChange} required />
               </div>
               <div className="a-margin-bottom-16">
                 <label htmlFor="email">Dirección de email </label>
                 <input id="email" name="email" type="email"
-                       value={formik.values.email}
-                       onChange={formik.handleChange}/>
+                  value={registerUser.values.email}
+                  onChange={registerUser.handleChange} />
               </div>
             </fieldset>
             <div className="a-flex a-flex-center">

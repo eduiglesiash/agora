@@ -2,6 +2,8 @@ import './Books.page.css'
 import * as api from '../../api/books.api'
 import Book from '../../components/Book/Book'
 import { useState, useEffect } from 'react'
+import {toast} from 'react-toastify'
+import { config } from '../../config/config'
 
 
 export default function BooksPage() {
@@ -9,7 +11,9 @@ export default function BooksPage() {
   const [books, setBooks] = useState([])
 
   useEffect(() => {
-    api.getBooks().then(res => setBooks(res.data))
+    api.getBooks()
+    .then(res => setBooks(res.data))
+    .catch(err => toast.error(`${config.toastMessage.getBooksErrors} ${err.message}`))
   }, [])
 
   return (

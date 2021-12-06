@@ -284,31 +284,6 @@ textarea {
   width: 1px;
 }
 
-/* inputs */
-.a-input__container {
-  display: block;
-  margin-bottom: 12px;
-  text-align: left;
-  width: 100%;
-}
-.a-input {
-  border: 1px solid #b0b9c1;
-  border-radius: 6px;
-  font-size: 12px;
-  margin: 0;
-}
-.a-input__layer {
-  display: block;
-  font-size: 12px;
-  margin-bottom: 4px;
-}
-.a-input__error {
-  color: #d35d6e;
-  display: block;
-  font-size: 12px;
-  margin-top: 4px;
-}
-
 @keyframes fadeIn {
   0% {
     opacity: 0;

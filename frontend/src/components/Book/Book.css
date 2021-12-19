@@ -89,6 +89,7 @@
     right: 20px;
     transition: background-color .3s;
     width: 46px;
+    z-index: 1;
 }
 .Book__add::before,
 .Book__add::after {

@@ -3,7 +3,8 @@ export const config = {
         dashboard: '/',
         books: '/books',
         users: '/users',
-        userDetail: '/userDetail'
+        userDetail: '/userDetail',
+        bookDetail: '/bookDetail'
     },
     colorTags: {
         success: 'Tag__success',

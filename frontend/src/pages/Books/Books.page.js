@@ -17,7 +17,7 @@ export default function BooksPage() {
     isbn: '',
     title: '',
     author: '',
-    image: '',
+    imgURL: '',
     categories: '',
     description: '',
     quantity: undefined,
@@ -34,7 +34,7 @@ export default function BooksPage() {
     isbn: '',
     title: '',
     author: '',
-    image: '',
+    imgURL: '',
     categories: '',
     description: '',
     quantity: undefined,
@@ -45,23 +45,24 @@ export default function BooksPage() {
   }
 
   useEffect(() => {
-    api.getBooks().then(res => setBooks(res.data))
-  }, []);
+    clearForm();
+    api.getBooks({}).then(res => setBooks(res.data))
+  }, [modal]);
 
   const updateFormData = ({ res }) => {
-    const authors = res.volumeInfo.authors.reduce((acc, elem) => {
+    const authors = res.volumeInfo.authors?.reduce((acc, elem) => {
       acc += `${elem}, `;
       return acc;
     }, '');
-    const categories = res.volumeInfo.categories.reduce((acc, elem) => {
+    const categories = res.volumeInfo.categories?.reduce((acc, elem) => {
       acc += `${elem}, `;
       return acc;
     }, '');
     const obj = {
       title: res.volumeInfo.title,
-      author: authors.substring(0, authors.length - 2),
-      image: res.volumeInfo.imageLinks?.thumbnail,
-      categories: categories.substring(0, categories.length - 2),
+      author: authors?.substring(0, authors.length - 2),
+      imgURL: res.volumeInfo.imageLinks?.thumbnail,
+      categories: categories?.substring(0, categories.length - 2),
       description: res.volumeInfo.description,
     }
     setFormValues({ ...formValues, ...obj });
@@ -117,8 +118,28 @@ export default function BooksPage() {
 
   const onSubmit = () => {
     if (isFormCorrect()) {
-      console.log('guardar formulario!');
+      const filter = {
+        isbn: formValues.isbn,
+      };
+      api.findBooks(new URLSearchParams(filter).toString())
+        .then(res => {
+          if (res.data.length > 0) {
+            alert('El libro ya está guardado en la base de datos');
+            return false;
+          }
+          saveBook();
+        })
+        .catch(err => console.error(err));
     }
+  }
+
+  const saveBook = () => {
+    api.createBook({ ...formValues, available: formValues.quantity > 0 })
+      .then(res => {
+        if (res.status === 200)
+          setModal(false);
+      })
+      .catch(err => console.error(err));
   }
 
   const toggleModal = () => {
@@ -130,6 +151,7 @@ export default function BooksPage() {
       {
         books.map(book => <Book
           key={book.id}
+          id={book.id}
           title={book.title}
           author={book.author}
           imgURL={book.imgURL}

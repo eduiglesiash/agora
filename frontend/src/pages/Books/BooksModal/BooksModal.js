@@ -44,11 +44,11 @@ export default function BooksModal({ formValues, formErrors, onChangeInput, sear
               error={formErrors.author}
             />
             <BooksInput
-              id='image'
-              name='image'
+              id='imgURL'
+              name='imgURL'
               type='text'
               layer='Imagen'
-              value={formValues.image}
+              value={formValues.imgURL}
               placeholder='Url de la imagen del libro'
               helpText='Si no se dispone de imagen, dejar en blanco'
               onChange={onChangeInput}

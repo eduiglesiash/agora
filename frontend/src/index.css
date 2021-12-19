@@ -142,6 +142,9 @@ textarea {
 .a-flex-basis-50 {
   flex-basis: 50%;
 }
+.a-flex-basis-75 {
+  flex-basis: 75%;
+}
 .a-flex-basis-100 {
   flex-basis: 100%;
 }
@@ -184,6 +187,15 @@ textarea {
   color: #5aa469;
 }
 
+.a-cta--red {
+  background-color: #d35d6e;
+  border: 2px solid #d35d6e;
+}
+.a-cta--red:hover {
+  background-color: #ffffff;
+  color: #d35d6e;
+}
+
 /* fonts */
 .a-fs-18 {
   font-size: 18px;
@@ -214,8 +226,16 @@ textarea {
 
 /* margin */
 
+.a-margin-top-16 {
+  margin-top: 16px;
+}
+
 .a-margin-right-16 {
   margin-right: 16px;
+}
+
+.a-margin-bottom-16 {
+  margin-bottom: 16px;
 }
 
 /* colors */

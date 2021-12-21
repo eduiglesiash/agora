@@ -15,6 +15,12 @@
     transform: translateY(-1px);
     box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
 }
+.Book--non-available {
+    border-left-color: #D35D6E;
+}
+.Book--last-units {
+    border-left-color: #F8D49D;
+}
 .Book__cover {
     width: 75px;
 }
@@ -37,10 +43,11 @@
 }
 
 .Book__status {
+    align-items: center;
     padding: 8px;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    font-size: 14px;
 }
 
 .Book__counts {
@@ -55,10 +62,6 @@
     background-color: #213c60;
     border-radius: 9999em;
 }
-
-.Book--borrowed{
-    border-color: #D35D6E
-}
 .Book__status::before {
     content: '';
     display: inline-block;
@@ -69,13 +72,13 @@
     margin-right: 8px;
     background-color: #5AA469;
 }
-.Book--borrowed .Book__status::before {
+.Book--non-available .Book__status::before {
     background-color: #D35D6E;
 }
-.Book--borrowed-available .Book__status::before {
+.Book--last-units .Book__status::before {
     background-color: #F8D49D;
 }
-.Book--borrowed-available {
+.Book--last-units-available {
     border-color: #F8D49D
 }
 

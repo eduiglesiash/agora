@@ -5,4 +5,22 @@
  * to customize this service
  */
 
-module.exports = {};
+module.exports = {
+    queryBooks: async () => {
+        const result = await strapi.services.library.find({
+            _sort: 'title:asc',
+        });
+
+        return result;
+    },
+    queryBooksAvaliability: async ({ books }) => {
+        const result = await Promise.all(books.map(async (book) => {
+            const count = await strapi.services['borrowed-books'].count({ "library.isbn": book.isbn });
+            return {
+                ...book,
+                quantity: book.quantity - count,
+            };
+        }));
+        return result;
+    }
+};

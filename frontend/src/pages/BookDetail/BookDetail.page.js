@@ -6,6 +6,11 @@ import { useEffect } from 'react';
 import { useLocation } from 'wouter';
 import BooksInput from '../Books/BooksInput/BooksInput';
 
+import { getUsers } from '../../api/users.api';
+import { borrowBook } from '../../api/borrowedBooks.api';
+
+import Modal from '../../components/Modal/Modal';
+
 const BookDetailField = ({ label, value }) => {
   return (
     <div className='a-margin-bottom-16'>
@@ -19,6 +24,8 @@ export default function BookDetailPage() {
   const [, params] = useRoute("/bookDetail/:id");
   const [book, setBook] = useState({});
   const [, setLocation] = useLocation();
+  const [modal, setModal] = useState(false);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const filter = {
@@ -35,6 +42,13 @@ export default function BookDetailPage() {
       .catch(err => console.error(err));
   }, [params.id]);
 
+  useEffect(() => {
+    if (modal)
+      getUsers()
+        .then(res => setUsers(res.data))
+        .catch(err => console.error(err));
+  }, [modal])
+
   const onSubmit = () => {
     putBook(params.id, { quantity: book.quantity })
       .then(() => alert('CANTIDAD ACTUALIZADA CORRECTAMENTE'))
@@ -49,9 +63,43 @@ export default function BookDetailPage() {
     }
   }
 
+  const toggleModal = () => {
+    setModal(!modal);
+  }
+
+  const lendBook = ({user}) => {
+    borrowBook({ book, user })
+      .then(res => console.log(res))
+      .catch(err => console.error(err));
+  }
+
+  const ModalContent = () => {
+    return (
+      <>
+        <div className='a-flex a-flex-align-item BookDetailPage__modal-header'>
+          <div className='a-flex a-flex-basis-25 BookDetailPage__modal-name'><strong>Nombre</strong></div>
+          <div className='a-flex a-flex-basis-50 BookDetailPage__modal-surname'><strong>Apellidos</strong></div>
+        </div>
+        <ul className='BookDetailPage__modal-list'>
+          {
+            users.map(user =>
+              <li className='a-flex a-flex-align-item a-margin-top-16 BookDetailPage__modal-element' key={user.codeUser}>
+                <div className='a-flex a-flex-basis-25 BookDetailPage__modal-name'>{user.name}</div>
+                <div className='a-flex a-flex-basis-50 BookDetailPage__modal-surname'>{user.surname}</div>
+                <div className='a-flex a-flex-basis-25 BookDetailPage__modal-button-container'>
+                  <button className='a-cta a-cta--blue Book__cta BookDetailPage__modal-button' type='button' onClick={() => lendBook({ user })}>Prestar libro</button>
+                </div>
+              </li>
+            )
+          }
+        </ul>
+      </>
+    )
+  }
+
   return (
     <section className="a-flex">
-      <section className="a-p-16 a-flex-basis-25">
+      <section className="a-p-16 a-flex-basis-25 BookDetailPage__col--left">
         <img src={book.imgURL} alt='Portada de libro' />
         <form className='a-margin-top-16'>
           <BooksInput
@@ -64,7 +112,8 @@ export default function BookDetailPage() {
             onChange={(e) => setBook({ ...book, quantity: e.target.value })}
           />
           <button className='a-cta Book__cta' type='button' onClick={onSubmit}>Actualizar cantidad</button>
-          <button className='a-cta a-cta--red Book__cta a-margin-top-16' type='button' onClick={onDelete}>Eliminar libro</button>
+          <button className='a-cta a-cta--blue a-margin-top-16 Book__cta' type='button' onClick={toggleModal}>Prestar libro</button>
+          <button className='a-cta a-cta--red a-margin-top-16 Book__cta' type='button' onClick={onDelete}>Eliminar libro</button>
         </form>
       </section>
       <section className="a-p-16 a-flex-basis-75">
@@ -73,6 +122,14 @@ export default function BookDetailPage() {
         <BookDetailField label='Categoría(s)' value={book.categories} />
         <BookDetailField label='Descripción' value={book.description} />
       </section>
+      { modal && (
+        <Modal
+          title='Selecciona el usuario'
+          onClose={toggleModal}
+        >
+          <ModalContent />
+        </Modal>
+      )}
     </section>
   )
 }

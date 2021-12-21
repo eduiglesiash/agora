@@ -10,6 +10,14 @@
     },
     {
       "method": "GET",
+      "path": "/borrowed-books/users/:isbn",
+      "handler": "borrowed-books.users",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/borrowed-books/count",
       "handler": "borrowed-books.count",
       "config": {

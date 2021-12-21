@@ -49,7 +49,7 @@ export default function BooksPage() {
 
   useEffect(() => {
     clearForm();
-    api.getBooksAvaliability({}).then(res => setBooks(res.data))
+    api.getBooksAvaliability().then(res => setBooks(res.data))
   }, [modal]);
 
   const updateFormData = ({ res }) => {
@@ -240,7 +240,7 @@ export default function BooksPage() {
           title={book.title}
           author={book.author}
           imgURL={book.imgURL}
-          quantity={book.quantity}
+          leftBooks={book.leftBooks}
           isbn={book.isbn}
         />)
       }

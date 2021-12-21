@@ -6,8 +6,9 @@
  */
 
 module.exports = {
-    queryBooks: async () => {
+    queryBooks: async ({ filter }) => {
         const result = await strapi.services.library.find({
+            ...filter,
             _sort: 'title:asc',
         });
 
@@ -18,7 +19,7 @@ module.exports = {
             const count = await strapi.services['borrowed-books'].count({ "library.isbn": book.isbn });
             return {
                 ...book,
-                quantity: book.quantity - count,
+                leftBooks: book.quantity - count,
             };
         }));
         return result;

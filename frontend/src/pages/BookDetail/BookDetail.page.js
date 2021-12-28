@@ -51,15 +51,15 @@ export default function BookDetailPage() {
       refreshBookusers();
   }, [modal, book.isbn]);
 
-  const onSubmit = () => {
-    putBook(params.id, { quantity: book.quantity })
+  const updateQuantity = () => {
+    putBook(book.id, { quantity: book.quantity })
       .then(() => alert('CANTIDAD ACTUALIZADA CORRECTAMENTE'))
       .catch(err => console.error(err));
   }
 
-  const onDelete = () => {
+  const removeBook = () => {
     if (window.confirm('¿Estás seguro de eliminar el libro?')) {
-      deleteBook(params.id)
+      deleteBook(book.id)
         .then(() => setLocation('/books'))
         .catch(err => console.error(err));
     }
@@ -72,7 +72,9 @@ export default function BookDetailPage() {
   const lendBook = ({user}) => {
     borrowBook({ book, user })
       .then(res => {
-        console.log(res);
+        if (res.status === 200) {
+          alert('LIBRO PRESTADO CORRECTAMENTE');
+        }
         refreshBookusers();
       })
       .catch(err => console.error(err));
@@ -116,9 +118,9 @@ export default function BookDetailPage() {
             placeholder='Url de la imagen del libro'
             onChange={(e) => setBook({ ...book, quantity: e.target.value })}
           />
-          <button className='a-cta Book__cta' type='button' onClick={onSubmit}>Actualizar cantidad</button>
+          <button className='a-cta Book__cta' type='button' onClick={updateQuantity}>Actualizar cantidad</button>
           <button className={`a-cta ${book.leftBooks === 0 ? ' a-cta--disabled' : 'a-cta--blue'} a-margin-top-16 Book__cta`} disabled={book.leftBooks === 0} type='button' onClick={toggleModal}>{book.leftBooks > 0 ? 'Prestar libro' : 'Todos prestados'}</button>
-          <button className='a-cta a-cta--red a-margin-top-16 Book__cta' type='button' onClick={onDelete}>Eliminar libro</button>
+          <button className='a-cta a-cta--red a-margin-top-16 Book__cta' type='button' onClick={removeBook}>Eliminar libro</button>
         </form>
       </section>
       <section className="a-p-16 a-flex-basis-75">

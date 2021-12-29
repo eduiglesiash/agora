@@ -4,6 +4,7 @@ import { Route } from 'wouter'
 import DashboardPage from './pages/Dashboard/Dashboard.page'
 import UsersPage from './pages/Users/Users.page'
 import BooksPage from './pages/Books/Books.page'
+import BorrowedBooksPage from './pages/BorrowedBooks/BorrowedBooks.page'
 import Menu from './components/Menu/Menu'
 import TopBar from './components/TopBar/TopBar'
 import UserDetailPage from './pages/UserDetail/UserDetail.page';
@@ -18,6 +19,7 @@ function App() {
         <Route path={config.paths.dashboard} component={DashboardPage} />
         <Route path={config.paths.users} component={UsersPage} />
         <Route path={config.paths.books} component={BooksPage} /> 
+        <Route path={config.paths.borrowedBooks} component={BorrowedBooksPage} /> 
         <Route path={config.paths.userDetail + '/:id'} component={UserDetailPage} /> 
         <Route path={config.paths.bookDetail + '/:id'} component={BookDetailPage} /> 
       </main>

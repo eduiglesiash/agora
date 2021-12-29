@@ -4,7 +4,8 @@ export const config = {
         books: '/books',
         users: '/users',
         userDetail: '/userDetail',
-        bookDetail: '/bookDetail'
+        bookDetail: '/bookDetail',
+        borrowedBooks: '/borrowedBooks'
     },
     colorTags: {
         success: 'Tag__success',

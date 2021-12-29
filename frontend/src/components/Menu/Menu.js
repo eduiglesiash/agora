@@ -3,7 +3,7 @@ import { config } from '../../config/config';
 import { Link } from 'wouter';
 import React, {useState} from 'react';
 import classname from 'classname';
-import { FcMenu, FcTemplate, FcKindle, FcConferenceCall } from "react-icons/fc";
+import { FcMenu, FcTemplate, FcKindle, FcConferenceCall, FcReading } from "react-icons/fc";
 
 export default function Menu() {
   const [state, setState] = useState(false);
@@ -32,6 +32,12 @@ export default function Menu() {
           <Link className="Menu__link" href={config.paths.books}>
             <FcKindle size="34px"/>
             <span className={isHide}>Libros</span>
+          </Link>
+        </li>
+        <li>
+          <Link className="Menu__link" href={config.paths.borrowedBooks}>
+            <FcReading size="34px"/>
+            <span className={isHide}>Prestados</span>
           </Link>
         </li>
         <li>

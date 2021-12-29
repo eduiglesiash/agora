@@ -55,6 +55,7 @@ button {
   border: none;
   padding: 0;
   background-color: transparent;
+  width: 100%;
 }
 
 fieldset {
@@ -66,9 +67,11 @@ fieldset {
 input {
   /*reset*/
   border: none;
-  padding: 8px 4px;
-  background-color: transparent;
-  border-bottom: 2px solid #213c60;
+  padding: 16px 8px;
+  background-color: #E3E4E580;
+  color: #0071BC;
+  font-weight: bold;
+  border-radius: 6px;
   font-size: 20px;
   width: 100%;
   margin-bottom: 20px;
@@ -78,7 +81,8 @@ input:focus {
 }
 label {
   display: block;
-  font-size: 14px;
+  font-size: 18px;
+  margin-bottom: 8px;
 }
 
 /* Estilos comunes */

@@ -3,7 +3,9 @@ export const config = {
     dashboard: '/',
     books: '/books',
     users: '/users',
-    userDetail: '/userDetail'
+    userDetail: '/userDetail',
+    login: 'auth/login',
+    root: '/'
   },
   colorTags: {
     success: 'Tag__success',

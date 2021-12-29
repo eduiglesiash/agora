@@ -105,7 +105,7 @@ export default function UserDetailPage({params}) {
         });
       })
       .catch(err => toast.error(`${config.toastMessage.getUserByIDError} ${err}`));
-  }, [params]);
+  }, [params, updateFormUser]);
 
   const isFieldModified = () => {
     const {name, surname, phone, email} = user;

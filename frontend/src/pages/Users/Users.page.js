@@ -12,13 +12,13 @@ const customStyleModal = {
   content: {
     position: 'absolute',
     padding: '48px',
-    top: '40%',
+    top: '20%',
     left: '50%',
-    transform: 'translate(-40%, -50%)',
+    transform: 'translate(-40%, -10%)',
     display: 'flex',
     flexDirection: 'column',
     width: '60%',
-    height: '600px',
+    height: '750px',
     border: 'none',
     boxShadow: '0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%)'
   }

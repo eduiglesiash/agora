@@ -17,27 +17,21 @@ import { AuthProvider } from './context/AuthContext';
 function App() {
   return (
     <AuthProvider>
-
-
+      <TopBar />
+      <Menu />
+           
       <main className="Main">
         <ToastContainer autoClose={5000} theme={'colored'} />
-
         <Routes>
-          <Route element={
-            <PrivateRoute>
-              <TopBar />
-              <Menu />
-            </PrivateRoute>
-          }/>
           <Route path={config.paths.login} element={<LoginPage />} exact />
           <Route path={config.paths.dashboard} element={
             <PrivateRoute>
               <DashboardPage />
             </PrivateRoute>
           } exact />          {/* <Route path={config.paths.dashboard} element={DashboardPage} /> */}
-          <Route path={config.paths.users} element={<UsersPage />} />
-          <Route path={config.paths.books} element={<BooksPage />} />
-          <Route path={config.paths.userDetail + '/:id'} element={<UserDetailPage />} />
+          <Route path={config.paths.users} element={<PrivateRoute><UsersPage /></PrivateRoute>} />
+          <Route path={config.paths.books} element={<PrivateRoute><BooksPage /></PrivateRoute>} />
+          <Route path={config.paths.userDetail + '/:id'} element={<PrivateRoute><UserDetailPage /></PrivateRoute>} />
           <Route
             path="*"
             element={
@@ -47,10 +41,7 @@ function App() {
             }
           />
         </Routes>
-
-
       </main>
-
     </AuthProvider>
   );
 }

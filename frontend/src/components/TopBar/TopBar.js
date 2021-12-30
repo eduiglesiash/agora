@@ -1,9 +1,28 @@
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { config } from '../../config/config';
+import { useAuth } from '../../hooks/useAuth';
 import './TopBar.css';
 
 export default function TopBar(){
+  const auth = useAuth();
+
+
+  const handleLogout = ()=>{
+    toast.info(config.toastMessage.loginLogout)
+    auth.signout();
+  }
+
   return (
-    <section className="TopBar">
-      <p>Esto es el topbar</p>
-    </section>
+    <>
+    {
+      auth.user && 
+      <section className="TopBar">
+        <button type="button" onClick={handleLogout}>Logout</button>
+      </section>
+    }
+    </>
+    
+   
   )
 }

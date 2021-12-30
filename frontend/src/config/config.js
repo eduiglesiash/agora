@@ -4,7 +4,7 @@ export const config = {
     books: '/books',
     users: '/users',
     userDetail: '/userDetail',
-    login: 'auth/login',
+    login: '/auth/login',
     root: '/'
   },
   colorTags: {
@@ -27,5 +27,8 @@ export const config = {
     userUpdateError: `No se ha podido actualizar la información del usuario \n`,
     userUpdateSuccess: `La información se ha actualizado correctamente \n`,
     getBooksErrors: `No hemos podido conectar con la BBDD de los libros \n`,
+    loginError: `Usuario y/o contraseña incorrectos \n`,
+    loginSuccess: `Usuario logado correctamente \n`,
+    loginLogout: `Se ha cerrado la sesión correctamente \n`
   }
 };

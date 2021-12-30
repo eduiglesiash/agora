@@ -2,7 +2,12 @@ import './Books.page.css'
 import * as api from '../../api/books.api'
 import Book from '../../components/Book/Book'
 import { useState, useEffect } from 'react'
+
 import axios from 'axios';
+
+import {toast} from 'react-toastify'
+import { config } from '../../config/config'
+
 
 import BooksInput from './BooksInput/BooksInput';
 import BooksTextarea from './BooksTextarea/BooksTextarea';
@@ -230,6 +235,11 @@ export default function BooksPage() {
     </>
   )
   }
+    api.getBooks()
+    .then(res => setBooks(res.data))
+    .catch(err => toast.error(`${config.toastMessage.getBooksErrors} ${err.message}`))
+  }, [])
+
 
   return (
     <section className="a-p-16 a-flex a-flex-column">

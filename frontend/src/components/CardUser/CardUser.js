@@ -1,7 +1,6 @@
 import './CardUser.css'
 import { useState } from 'react';
-import { Link } from 'wouter'
-import { config } from '../../config/config'
+import { Link } from 'react-router-dom'
 import Avatar from '../Avatar/Avatar'
 import Modal from 'react-modal'
 import { FcInfo, FcDataConfiguration } from "react-icons/fc";
@@ -24,20 +23,16 @@ const customStyles = {
 };
 Modal.setAppElement('#root');
 
-export default function CardUser({ codeUser, email, name, phone, surname, totalBookRead, avatar, created_at }) {
+export default function CardUser({ codeUser, email, name, phone, surname, totalBookRead, avatar, created_at, userId }) {
   const [modalIsOpen, setIsOpen] = useState(false);
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function afterOpenModal() {
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
+  const afterOpenModal = () => {
     // references are now sync'd and can be accessed.
     console.log(`AfterOpenModal`)
   }
 
-  function closeModal() {
-    setIsOpen(false);
-  }
+  
   return (
     <article className="Card__users a-fade-in">
       <Avatar thumbnail={avatar} />
@@ -60,13 +55,13 @@ export default function CardUser({ codeUser, email, name, phone, surname, totalB
         <ul className="a-flex a-flex-row">
           <li className="a-margin-right-16">
             <button className="a-btn__icon" onClick={openModal}>
-              <FcInfo size="30px"/>
+              <FcInfo size="30px" />
               <span className="sr-only">Ver ficha de usuario</span>
             </button>
           </li>
           <li>
-            <Link href={config.paths.userDetail + `/eliddelusuario`} className="a-btn__icon a-lh-2 a-flex a-flex-center a-flex-align-item">
-              <FcDataConfiguration size="30px"/>
+            <Link to={`${userId}`} className="a-btn__icon a-lh-2 a-flex a-flex-center a-flex-align-item">
+              <FcDataConfiguration size="30px" />
               <span className="sr-only">Editar ficha de usuario</span>
             </Link>
           </li>
@@ -79,9 +74,9 @@ export default function CardUser({ codeUser, email, name, phone, surname, totalB
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <header>
+        <header className="a-flex a-flex-end">
           <button className="a-btn__icon" onClick={closeModal}>
-            <VscChromeClose size="34px"/> 
+            <VscChromeClose size="34px" />
             <span className="sr-only">Cerrar ventana de dialogo </span>
           </button>
         </header>

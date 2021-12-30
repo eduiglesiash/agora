@@ -16,12 +16,8 @@ export default function LoginPage() {
       password: ''
     },
     onSubmit: async (values) => {
-      console.log({ values })
-      
-      // Request 
+
       const statusRequest = await auth.signin({ ...values })
-      
-      console.log({login: statusRequest})
 
       if (statusRequest.user) {
         toast.success(config.toastMessage.loginSuccess)

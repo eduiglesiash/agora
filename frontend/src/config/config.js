@@ -1,10 +1,10 @@
 export const config = {
   paths: {
     dashboard: '/',
-    books: '/books',
-    users: '/users',
-    userDetail: '/userDetail',
-    login: '/auth/login',
+    books: 'books',
+    users: 'users',
+    userDetail: 'detail',
+    login: 'auth/login',
     root: '/'
   },
   colorTags: {

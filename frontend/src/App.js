@@ -16,7 +16,7 @@ import { AuthProvider } from './context/AuthContext';
 
 
 function App() {
- 
+
   return (
     <AuthProvider>
       <TopBar />
@@ -27,10 +27,11 @@ function App() {
         <Routes>
 
           <Route path={config.paths.dashboard} element={<PrivateRoute> <DashboardPage /></PrivateRoute>} />
-          <Route path={config.paths.login} element={<LoginPage />}/>          {/* <Route path={config.paths.dashboard} element={DashboardPage} /> */}
+          <Route path={config.paths.login} element={<LoginPage />} />          {/* <Route path={config.paths.dashboard} element={DashboardPage} /> */}
           <Route path={config.paths.users} element={<PrivateRoute><UsersPage /></PrivateRoute>} />
+          <Route path={`${config.paths.users}/:id`} element={<PrivateRoute><UserDetailPage /></PrivateRoute>} />
           <Route path={config.paths.books} element={<PrivateRoute><BooksPage /></PrivateRoute>} />
-          <Route path={config.paths.userDetail + '/:id'} element={<PrivateRoute><UserDetailPage /></PrivateRoute>} />
+
           <Route
             path="*"
             element={

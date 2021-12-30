@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { config } from '../../config/config';
 import { useAuth } from '../../hooks/useAuth';
@@ -21,8 +20,6 @@ export default function TopBar(){
         <button type="button" onClick={handleLogout}>Logout</button>
       </section>
     }
-    </>
-    
-   
+    </> 
   )
 }

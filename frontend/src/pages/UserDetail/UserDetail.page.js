@@ -6,7 +6,7 @@ import * as strapi from '../../api/users.api';
 import Modal from 'react-modal';
 import {VscChromeClose} from 'react-icons/vsc';
 import {useFormik} from 'formik';
-import {useLocation} from 'wouter';
+import {useLocation} from 'react-router-dom';
 import classNames from 'classnames';
 import {toast} from 'react-toastify';
 import {config} from '../../config/config';

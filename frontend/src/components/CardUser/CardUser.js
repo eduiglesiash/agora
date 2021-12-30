@@ -1,6 +1,6 @@
 import './CardUser.css'
 import { useState } from 'react';
-import { Link } from 'wouter'
+import { Link } from 'react-router-dom'
 import { config } from '../../config/config'
 import Avatar from '../Avatar/Avatar'
 import Modal from 'react-modal'
@@ -61,7 +61,7 @@ export default function CardUser({ codeUser, email, name, phone, surname, totalB
             </button>
           </li>
           <li>
-            <Link href={`${config.paths.userDetail}/${userId}`} className="a-btn__icon a-lh-2 a-flex a-flex-center a-flex-align-item">
+            <Link to={`${config.paths.userDetail}/${userId}`} className="a-btn__icon a-lh-2 a-flex a-flex-center a-flex-align-item">
               <FcDataConfiguration size="30px" />
               <span className="sr-only">Editar ficha de usuario</span>
             </Link>

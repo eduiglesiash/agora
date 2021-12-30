@@ -1,6 +1,6 @@
 import './Menu.css';
 import { config } from '../../config/config';
-import { Link } from 'wouter';
+import { NavLink } from 'react-router-dom';
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { FcMenu, FcTemplate, FcKindle, FcConferenceCall } from "react-icons/fc";
@@ -23,22 +23,22 @@ export default function Menu() {
       </button>
       <ul className="Menu__list">
         <li>
-          <Link className="Menu__link" href={config.paths.dashboard}>
+          <NavLink className="Menu__link" to={config.paths.dashboard}>
             <FcTemplate size="34px" />
             <span className={isHide}>Dashboard</span>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link className="Menu__link" href={config.paths.books}>
+          <NavLink className="Menu__link" to={config.paths.books}>
             <FcKindle size="34px" />
             <span className={isHide}>Libros</span>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link className="Menu__link" href={config.paths.users}>
+          <NavLink className="Menu__link" to={config.paths.users}>
             <FcConferenceCall size="34px" />
             <span className={isHide}>Usuarios</span>
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </nav>

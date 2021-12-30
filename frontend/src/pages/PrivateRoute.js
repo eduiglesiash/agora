@@ -1,14 +1,21 @@
-import React from 'react';
-import { Redirect, Route } from 'wouter';
-import { config } from '../config/config';
+import React from "react";
+import { Navigate, useLocation } from "react-router-dom";
+import { config } from "../config/config";
+import { useAuth } from "../hooks/useAuth";
 
+const PrivateRoute = ({ children }) => {
+  let auth = useAuth();
+  let location = useLocation();
 
-const PrivateRoute = ({ children, ...rest }) => {
-  console.log({children})
-  let authenticated = false;
-  return (
-    <Route {...rest} render={()=>authenticated ? children : <Redirect to={config.paths.login}/>}/>
-  )
-};
-        
-export default PrivateRoute;
+  if (!auth.user) {
+    // Redirect them to the /login page, but save the current location they were
+    // trying to go to when they were redirected. This allows us to send them
+    // along to that page after they login, which is a nicer user experience
+    // than dropping them off on the home page.
+    return <Navigate to={config.paths.login} state={{ from: location }} replace />;
+  }
+
+  return children;
+}
+
+export default PrivateRoute

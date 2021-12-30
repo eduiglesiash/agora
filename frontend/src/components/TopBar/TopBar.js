@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
 import { config } from '../../config/config';
 import { useAuth } from '../../hooks/useAuth';
+import {RiLogoutCircleRLine} from "react-icons/ri";
 import './TopBar.css';
 
 export default function TopBar(){
@@ -17,7 +18,9 @@ export default function TopBar(){
     {
       auth.user && 
       <section className="TopBar">
-        <button type="button" onClick={handleLogout}>Logout</button>
+        <button className="TopBar__button" type="button" onClick={handleLogout}>
+          <RiLogoutCircleRLine size="34px"/>
+        </button>
       </section>
     }
     </> 

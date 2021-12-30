@@ -25,6 +25,7 @@ export default function LoginPage() {
 
       if (statusRequest.user) {
         toast.success(config.toastMessage.loginSuccess)
+        console.log('Navigate to Dashboard')
         navigate(config.paths.dashboard)
       } else {
         toast.error(config.toastMessage.loginError, {

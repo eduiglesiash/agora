@@ -10,6 +10,22 @@
     },
     {
       "method": "GET",
+      "path": "/libraries/availability",
+      "handler": "library.availability",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/libraries/availability/:isbn",
+      "handler": "library.availability",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/libraries/count",
       "handler": "library.count",
       "config": {

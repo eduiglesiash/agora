@@ -15,6 +15,12 @@
     transform: translateY(-1px);
     box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
 }
+.Book--non-available {
+    border-left-color: #D35D6E;
+}
+.Book--last-units {
+    border-left-color: #F8D49D;
+}
 .Book__cover {
     width: 75px;
 }
@@ -37,10 +43,11 @@
 }
 
 .Book__status {
+    align-items: center;
     padding: 8px;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    font-size: 14px;
 }
 
 .Book__counts {
@@ -55,10 +62,6 @@
     background-color: #213c60;
     border-radius: 9999em;
 }
-
-.Book--borrowed{
-    border-color: #D35D6E
-}
 .Book__status::before {
     content: '';
     display: inline-block;
@@ -69,20 +72,76 @@
     margin-right: 8px;
     background-color: #5AA469;
 }
-.Book--borrowed .Book__status::before {
+.Book--non-available .Book__status::before {
     background-color: #D35D6E;
 }
-.Book--borrowed-available .Book__status::before {
+.Book--last-units .Book__status::before {
     background-color: #F8D49D;
 }
-.Book--borrowed-available {
+.Book--last-units-available {
     border-color: #F8D49D
 }
 
+.Book__add {
+    background-color: #5AA469;
+    border: 2px solid #5AA469;
+    border-radius: 50%;
+    bottom: 20px;
+    height: 46px;
+    position: fixed;
+    right: 20px;
+    transition: background-color .3s;
+    width: 46px;
+    z-index: 1;
+}
+.Book__add::before,
+.Book__add::after {
+    background-color: #efefef;
+    content: '';
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: background-color .3s;
+    width: 20px;
+}
+.Book__add::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+.Book__add:hover {
+    background-color: #efefef;
+}
+.Book__add:hover::before,
+.Book__add:hover::after {
+    background-color: #5AA469;
+}
+
+.Book__cta {
+    width: 100%;
+}
+
+.Book__paragraph {
+    margin: 32px 0 16px;
+    text-align: left;
+}
+
+.Book__description {
+    height: 120px;
+}
 
 @media all and (min-width: 768px) {
     .Book {
         flex-direction: row;
         justify-content: space-between;
     }
+}
+
+@keyframes loading {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }

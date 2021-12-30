@@ -3,8 +3,9 @@ import { config } from '../../config/config';
 import { NavLink } from 'react-router-dom';
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import { FcMenu, FcTemplate, FcKindle, FcConferenceCall } from "react-icons/fc";
+import { FcMenu, FcTemplate, FcKindle, FcConferenceCall, FcReading } from "react-icons/fc";
 import { useAuth } from '../../hooks/useAuth';
+
 
 export default function Menu() {
   const auth = useAuth();
@@ -39,6 +40,12 @@ export default function Menu() {
                 <span className={isHide}>Libros</span>
               </NavLink>
             </li>
+        <li>
+          <NavLink className="Menu__link" to={config.paths.borrowedBooks}>
+            <FcReading size="34px"/>
+            <span className={isHide}>Prestados</span>
+          </NavLink>
+        </li>
             <li>
               <NavLink className="Menu__link" to={config.paths.users}>
                 <FcConferenceCall size="34px" />

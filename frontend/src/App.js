@@ -5,15 +5,15 @@ import { Route, Routes } from 'react-router-dom';
 import DashboardPage from './pages/Dashboard/Dashboard.page'
 import UsersPage from './pages/Users/Users.page'
 import BooksPage from './pages/Books/Books.page'
+import BorrowedBooksPage from './pages/BorrowedBooks/BorrowedBooks.page'
 import Menu from './components/Menu/Menu'
 import TopBar from './components/TopBar/TopBar'
 import UserDetailPage from './pages/UserDetail/UserDetail.page';
+import BookDetailPage from './pages/BookDetail/BookDetail.page';
 import { ToastContainer } from 'react-toastify';
 import LoginPage from './pages/Login/Login.page';
 import PrivateRoute from './pages/PrivateRoute';
 import { AuthProvider } from './context/AuthContext';
-
-
 
 function App() {
 
@@ -25,13 +25,13 @@ function App() {
       <main className="Main">
         <ToastContainer autoClose={5000} theme={'colored'} />
         <Routes>
-
+          <Route path={config.paths.login} element={<LoginPage />} />          
           <Route path={config.paths.dashboard} element={<PrivateRoute> <DashboardPage /></PrivateRoute>} />
-          <Route path={config.paths.login} element={<LoginPage />} />          {/* <Route path={config.paths.dashboard} element={DashboardPage} /> */}
           <Route path={config.paths.users} element={<PrivateRoute><UsersPage /></PrivateRoute>} />
           <Route path={`${config.paths.users}/:id`} element={<PrivateRoute><UserDetailPage /></PrivateRoute>} />
           <Route path={config.paths.books} element={<PrivateRoute><BooksPage /></PrivateRoute>} />
-
+          <Route path={config.paths.bookDetail + '/:id'} element={<PrivateRoute> <BookDetailPage/> </PrivateRoute>} /> 
+          <Route path={config.paths.borrowedBooks} element={<PrivateRoute> <BorrowedBooksPage/> </PrivateRoute>} /> 
           <Route
             path="*"
             element={

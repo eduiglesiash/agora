@@ -5,4 +5,11 @@
  * to customize this controller
  */
 
-module.exports = {};
+module.exports = {
+    availability: async ctx => {
+        const filter = ctx.params.isbn ? { isbn: ctx.params.isbn } : {};
+        const books = await strapi.services.library.queryBooks({ filter });
+        const booksAvaliability = await strapi.services.library.queryBooksAvaliability({ books })
+        return ctx.send(booksAvaliability);
+    }
+};

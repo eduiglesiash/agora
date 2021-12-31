@@ -2,7 +2,7 @@ import './BookDetail.page.css'
 import React, { useState } from 'react';
 import { getBooksAvaliability, putBook, deleteBook } from '../../api/books.api';
 import { useEffect } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import BooksInput from '../Books/BooksInput/BooksInput';
 
 import { borrowedBookUsers, borrowBook } from '../../api/borrowedBooks.api';
@@ -22,7 +22,7 @@ const BookDetailField = ({ label, value }) => {
 
 export default function BookDetailPage() {
   const [book, setBook] = useState({});
-  const [, setLocation] = useLocation();
+  const navigate = useNavigate();
   const [modal, setModal] = useState(false);
   const [users, setUsers] = useState([]);
 
@@ -61,7 +61,7 @@ export default function BookDetailPage() {
   const removeBook = () => {
     if (window.confirm('¿Estás seguro de eliminar el libro?')) {
       deleteBook(book.id)
-        .then(() => setLocation('/books'))
+        .then(() => navigate('/books'))
         .catch(err => console.error(err));
     }
   }

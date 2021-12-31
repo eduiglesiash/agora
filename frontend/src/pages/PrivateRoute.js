@@ -6,9 +6,11 @@ import { useAuth } from "../hooks/useAuth";
 const PrivateRoute = ({ children }) => {
   let auth = useAuth();
   let location = useLocation();
-  const {email} = JSON.parse(sessionStorage.getItem('agora-user'))
+  const user = JSON.parse(sessionStorage.getItem('agora-user'))
+
+
   
-  if (!auth.user && !email) {
+  if (!auth.user && !user) {
     // Redirect them to the /login page, but save the current location they were
     // trying to go to when they were redirected. This allows us to send them
     // along to that page after they login, which is a nicer user experience

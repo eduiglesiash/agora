@@ -7,6 +7,7 @@ import * as strapi from '../../api/users.api';
 import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
+import { useAuth } from '../../hooks/useAuth';
 
 const customStyleModal = {
   content: {
@@ -29,15 +30,18 @@ export default function UsersPage() {
 
   const [users, setUsers] = useState([]);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const auth = useAuth();
+
 
   useEffect(() => {
-    strapi.getUsers()
+
+    auth.token && strapi.getUsers(auth.token)
       .then(users => {
         // console.log({users: users.data});
         setUsers(users.data);
       })
       .catch(err => toast.error(`${config.toastMessage.getUsersError}: \n ${err}`));
-  }, []);
+  }, [auth]);
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);

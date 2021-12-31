@@ -2,13 +2,12 @@ export const config = {
   paths: {
     root: '/',
     dashboard: '/',
-    books: 'books',
-    users: 'users',
-    userDetail: 'detail',
-    login: 'auth/login',
-      bookDetail: 'bookDetail',
-        borrowedBooks: 'borrowedBooks'
-
+    books: '/books',
+    users: '/users',
+    userDetail: '/detail',
+    login: '/auth/login',
+    bookDetail: '/bookDetail',
+    borrowedBooks: '/borrowedBooks'
   },
   colorTags: {
     success: 'Tag__success',

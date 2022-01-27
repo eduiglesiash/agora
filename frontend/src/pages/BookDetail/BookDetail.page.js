@@ -27,7 +27,7 @@ export default function BookDetailPage() {
   const [users, setUsers] = useState([]);
 
 
-  const {isbn} = useParams();
+  const { isbn } = useParams();
 
   useEffect(() => {
     getBooksAvaliability(isbn)
@@ -70,7 +70,7 @@ export default function BookDetailPage() {
     setModal(!modal);
   }
 
-  const lendBook = ({user}) => {
+  const lendBook = ({ user }) => {
     borrowBook({ book, user })
       .then(res => {
         if (res.status === 200) {
@@ -130,7 +130,7 @@ export default function BookDetailPage() {
         <BookDetailField label='Categoría(s)' value={book.categories} />
         <BookDetailField label='Descripción' value={book.description} />
       </section>
-      { modal && (
+      {modal && (
         <Modal
           title='Selecciona el usuario'
           onClose={toggleModal}

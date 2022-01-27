@@ -49,6 +49,7 @@ export default function BooksPage() {
   });
 
   const onChangeInput = (e) => {
+    console.log({...{ [e.target.getAttribute('id')]: e.target.value }})
     setFormValues({ ...formValues, ...{ [e.target.getAttribute('id')]: e.target.value } });
   }
 
@@ -225,7 +226,7 @@ export default function BooksPage() {
             onChange={onChangeInput}
             error={formErrors.quantity}
           />
-          <button className='a-cta Book__cta' type='button' onClick={onSubmit}>Guardar libro</button>
+          <button className='a-btn__action' type='button' onClick={onSubmit}>Guardar libro</button>
           {
             loading && (
               <span className='Modal-loading' aria-hidden='true'>Cargando datos...</span>
@@ -250,7 +251,7 @@ export default function BooksPage() {
           isbn={book.isbn}
         />)
       }
-      <button type='button' className='Book__add' onClick={toggleModal}><span className='a-visually-hidden'>Añadir nuevo libro</span></button>
+      <button type='button' className='a-btn__add' onClick={toggleModal}><span className='a-visually-hidden'>Añadir nuevo libro</span></button>
       {
         modal && (
           <Modal

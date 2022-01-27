@@ -1,6 +1,5 @@
 # Frontend
 
-- [] Revisar el detalle del libro que ahora mismo no carga. 
-- [] Crear los buscadores de libros y de perfiles 
-- [] Crear funcionalidad de carga masiva de ficheros
-- [] 
+- [] Revisar estado del proyecto e identificar las áreas que tenemos que terminar
+- [] Hay que añadir un recovery password
+- 

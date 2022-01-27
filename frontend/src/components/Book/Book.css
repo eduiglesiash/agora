@@ -82,41 +82,6 @@
     border-color: #F8D49D
 }
 
-.Book__add {
-    background-color: #5AA469;
-    border: 2px solid #5AA469;
-    border-radius: 50%;
-    bottom: 20px;
-    height: 46px;
-    position: fixed;
-    right: 20px;
-    transition: background-color .3s;
-    width: 46px;
-    z-index: 1;
-}
-.Book__add::before,
-.Book__add::after {
-    background-color: #efefef;
-    content: '';
-    height: 2px;
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    transition: background-color .3s;
-    width: 20px;
-}
-.Book__add::after {
-    transform: translate(-50%, -50%) rotate(90deg);
-}
-.Book__add:hover {
-    background-color: #efefef;
-}
-.Book__add:hover::before,
-.Book__add:hover::after {
-    background-color: #5AA469;
-}
-
 .Book__cta {
     width: 100%;
 }

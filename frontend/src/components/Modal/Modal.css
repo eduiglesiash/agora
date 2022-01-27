@@ -21,12 +21,12 @@
     border: 1px solid #dadce0;
     border-radius: 8px;
     margin: 40px 0;
-    max-width: 840px;
     overflow: auto;
     padding: 40px 5%;
     position: relative;
     text-align: center;
-    width: 80%;
+    min-width: 60%;
+    max-width: 840px;
 }
 .Modal-header {
     margin-bottom: 24px;

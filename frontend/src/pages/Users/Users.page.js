@@ -1,50 +1,35 @@
 import './Users.page.css';
 import { config } from '../../config/config';
 import CardUser from '../../components/CardUser/CardUser';
-import Modal from 'react-modal';
-import { VscChromeClose } from 'react-icons/vsc';
+
 import * as strapi from '../../api/users.api';
 import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import { useAuth } from '../../hooks/useAuth';
+import Modal from '../../components/Modal/Modal';
 
-const customStyleModal = {
-  content: {
-    position: 'absolute',
-    padding: '48px',
-    top: '20%',
-    left: '50%',
-    transform: 'translate(-40%, -10%)',
-    display: 'flex',
-    flexDirection: 'column',
-    width: '60%',
-    height: '750px',
-    border: 'none',
-    boxShadow: '0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%)'
-  }
-};
-Modal.setAppElement('#root');
 
 export default function UsersPage() {
 
   const [users, setUsers] = useState([]);
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const auth = useAuth();
+
+  const toggleModal = () => {
+    const state = !modalIsOpen;
+    console.log({ state })
+    setModalIsOpen(state);
+  }
 
 
   useEffect(() => {
-
     auth.token && strapi.getUsers(auth.token)
       .then(users => {
-        // console.log({users: users.data});
         setUsers(users.data);
       })
       .catch(err => toast.error(`${config.toastMessage.getUsersError}: \n ${err}`));
-  }, [auth]);
-
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+  }, [auth, modalIsOpen]);
 
   const registerUser = useFormik({
     initialValues: {
@@ -76,7 +61,7 @@ export default function UsersPage() {
               phone: '',
               email: ''
             });
-            closeModal();
+            setModalIsOpen(false)
             toast.success(config.toastMessage.userRegisterSuccess);
           })
           .catch(err => toast.error(`${config.toastMessage.userRegisterError}\n ${err}`, {
@@ -85,14 +70,15 @@ export default function UsersPage() {
       }
     },
     onReset: values => {
-      closeModal();
+      console.log('Reset form');
+      setModalIsOpen(false)
     }
   });
 
   return (
     <>
       <section className="a-p-16 a-flex a-flex-center">
-        <button className="a-btn__action" type="button" onClick={openModal}>Dar de alta un usuario</button>
+        <button type='button' className='a-btn__add a-btn--blue ' onClick={toggleModal}><span className='a-visually-hidden'>Dar de alta un usuario</span></button>
       </section>
       <section className="a-p-16 a-flex a-flex-column">
         {
@@ -110,57 +96,59 @@ export default function UsersPage() {
           />))
         }
       </section>
+      {
+        modalIsOpen && (
+          <Modal
+            title='Registro de usuarios para la biblioteca'
+            onClose={toggleModal}
+          >
+            <section>
+              <form onSubmit={registerUser.handleSubmit}
+                onReset={registerUser.handleReset}>
+                <fieldset>
+                  <legend className="a-text-center a-margin-bottom-16 a-visually-hidden">Registro de usuarios de la biblioteca</legend>
 
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyleModal}
-        contentLabel="Example Modal"
-      >
-        <header className="a-flex a-flex-end">
-          <button className="a-btn__icon" onClick={closeModal}>
-            <VscChromeClose size="34px" />
-            <span className="sr-only">Cerrar ventana de dialogo </span>
-          </button>
-        </header>
-        <section>
-          <form onSubmit={registerUser.handleSubmit} onReset={registerUser.handleReset}>
-            <fieldset>
-              <legend className="a-text-center a-margin-bottom-16">Registro de usuarios de la biblioteca</legend>
-              <div className="a-margin-bottom-16">
-                <label htmlFor="mainName">Nombre (Obligatorio)</label>
-                <input id="name" name="name" type="text"
-                  onChange={registerUser.handleChange}
-                  value={registerUser.values.name} required />
-              </div>
-              <div className="a-margin-bottom-16">
-                <label htmlFor="surname">Apellidos (Obligatorio)</label>
-                <input id="surname" name="surname" type="text"
-                  value={registerUser.values.surname}
-                  onChange={registerUser.handleChange} required />
-              </div>
-              <div className="a-margin-bottom-16">
-                <label htmlFor="phone">Teléfono (Obligatorio)</label>
-                <input id="phone" name="phone" type="number"
-                  maxLength="9"
-                  value={registerUser.values.phone}
-                  onChange={registerUser.handleChange} required />
-              </div>
-              <div className="a-margin-bottom-16">
-                <label htmlFor="email">Dirección de email </label>
-                <input id="email" name="email" type="email"
-                  value={registerUser.values.email}
-                  onChange={registerUser.handleChange} />
-              </div>
-            </fieldset>
-            <div className="a-flex a-flex-center">
-              <button type="reset" className="a-btn__cancel">Cancelar</button>
-              <button type="submit" className="a-btn__action">Registrar</button>
-            </div>
-          </form>
-        </section>
+                  <label><span>Nombre (Obligatorio)</span>
+                    <input name="name" type="text"
+                      onChange={registerUser.handleChange}
+                      value={registerUser.values.name} required />
+                  </label>
 
-      </Modal>
+                  <label htmlFor="surname">
+                    <span>Apellidos (Obligatorio)</span>
+                    <input name="surname" type="text"
+                      value={registerUser.values.surname}
+                      onChange={registerUser.handleChange} required />
+                  </label>
+
+                  <label>
+                    <span>Teléfono (Obligatorio)</span>
+                    <input name="phone" type="number"
+                      maxLength="9"
+                      value={registerUser.values.phone}
+                      onChange={registerUser.handleChange} required />
+                  </label>
+
+                  <label>
+                    <span>Dirección de email</span>
+                    <input name="email" type="email"
+                      value={registerUser.values.email}
+                      onChange={registerUser.handleChange} />
+                  </label>
+
+
+                </fieldset>
+                <div className="a-flex a-flex-center a-flex-gap16">
+                  <button type="reset" className="a-btn__cancel">Cancelar</button>
+                  <button type="submit" className="a-btn__action">Registrar</button>
+                </div>
+              </form>
+            </section>
+
+          </Modal>
+        )
+      }
+
     </>
   );
 }

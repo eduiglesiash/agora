@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import { getBooksAvaliability, putBook, deleteBook } from '../../api/books.api';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { config } from '../../config/config';
+
 import BooksInput from '../Books/BooksInput/BooksInput';
 
 import { borrowedBookUsers, borrowBook } from '../../api/borrowedBooks.api';
@@ -33,7 +36,9 @@ export default function BookDetailPage() {
     getBooksAvaliability(isbn)
       .then(res => {
         if (res.data.length === 0) {
-          alert('El libro no existe en la base de datos');
+          toast.error(config.toastMessage.bookNotFound, {
+            position: toast.POSITION.TOP_CENTER
+          })
           return false;
         }
         setBook(res.data[0]);
@@ -54,14 +59,17 @@ export default function BookDetailPage() {
 
   const updateQuantity = () => {
     putBook(book.id, { quantity: book.quantity })
-      .then(() => alert('CANTIDAD ACTUALIZADA CORRECTAMENTE'))
+      .then(() => toast.success(config.toastMessage.quantityUpdated))
       .catch(err => console.error(err));
   }
 
   const removeBook = () => {
     if (window.confirm('¿Estás seguro de eliminar el libro?')) {
       deleteBook(book.id)
-        .then(() => navigate('/books'))
+        .then(() => {
+          toast.success(config.toastMessage.deletedBook)
+          navigate('/books')
+        })
         .catch(err => console.error(err));
     }
   }
@@ -74,7 +82,7 @@ export default function BookDetailPage() {
     borrowBook({ book, user })
       .then(res => {
         if (res.status === 200) {
-          alert('LIBRO PRESTADO CORRECTAMENTE');
+          toast.success(config.toastMessage.borrowedBook)
         }
         refreshBookusers();
       })
@@ -116,7 +124,7 @@ export default function BookDetailPage() {
             type='number'
             layer='Cantidad en la biblioteca:'
             value={book.quantity}
-            placeholder='Url de la imagen del libro'
+            placeholder='Cantidad de libros'
             onChange={(e) => setBook({ ...book, quantity: e.target.value })}
           />
           <button className='a-cta Book__cta' type='button' onClick={updateQuantity}>Actualizar cantidad</button>

@@ -36,5 +36,9 @@ export const config = {
     saveBookError: `Se ha producido un error \n`,
     isbnNeeded: `Debes introducir un ISBN \n`,
     isbnNotFound: `ISBN no encontrado. Introduce los datos en el formulario \n`,
+    bookNotFound: `Libro no encontrado en la base de datos \n`,
+    quantityUpdated: `Cantidad actualizada correctamente \n`,
+    borrowedBook: `Libro prestado correctamente \n`,
+    deletedBook: `Libro eliminado correctamente \n`,
   }
 };

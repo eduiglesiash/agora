@@ -1,6 +1,6 @@
 import './BooksTextarea.css';
 
-export default function Textarea({ id, classes, value, name, type, layer, placeholder, onChange, error }) {
+export default function Textarea({ id, classes, value, name, type, layer, placeholder, onChange, error, required }) {
   const classnames = `Books__textarea ${classes || ''} ${error !== undefined && error !== '' ? 'Books__textarea--error' : ''}`;
     return (
       <div className='Books__textarea-container'>
@@ -13,6 +13,7 @@ export default function Textarea({ id, classes, value, name, type, layer, placeh
           type={type}
           placeholder={placeholder}
           onChange={onChange}
+          required={required}
         />
         { error !== undefined && error !== '' && (
           <span className='Books__textarea-error'>{error}</span>

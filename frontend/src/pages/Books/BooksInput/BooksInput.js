@@ -10,8 +10,9 @@ export default function Input(params) {
     placeholder,
     helpText,
     onChange,
-    error } = params
-  
+    error,
+    required } = params
+
     const classnames = `Books__input ${classes || ''} ${error !== undefined && error !== '' ? 'Books__input--error' : ''}`;
   return (
     <div className='Books__input-container'>
@@ -24,6 +25,7 @@ export default function Input(params) {
         type={type}
         placeholder={placeholder}
         onChange={onChange}
+        required={required}
       />
       {helpText && (
         <p className='Books__input-help'>{helpText}</p>

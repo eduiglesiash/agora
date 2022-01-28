@@ -31,6 +31,10 @@ export const config = {
     getBooksErrors: `No hemos podido conectar con la BBDD de los libros \n`,
     loginError: `Usuario y/o contraseña incorrectos \n`,
     loginSuccess: `Usuario logado correctamente \n`,
-    loginLogout: `Se ha cerrado la sesión correctamente \n`
+    loginLogout: `Se ha cerrado la sesión correctamente \n`,
+    saveBookSuccess: `Se ha guardado el libro correctamente \n`,
+    saveBookError: `Se ha producido un error \n`,
+    isbnNeeded: `Debes introducir un ISBN \n`,
+    isbnNotFound: `ISBN no encontrado. Introduce los datos en el formulario \n`,
   }
 };

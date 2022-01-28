@@ -30,7 +30,7 @@ function App() {
           <Route path={config.paths.users} element={<PrivateRoute><UsersPage /></PrivateRoute>} />
           <Route path={`${config.paths.users}/:id`} element={<PrivateRoute><UserDetailPage /></PrivateRoute>} />
           <Route path={config.paths.books} element={<PrivateRoute><BooksPage /></PrivateRoute>} />
-          <Route path={config.paths.bookDetail + '/:id'} element={<PrivateRoute> <BookDetailPage/> </PrivateRoute>} /> 
+          <Route path={config.paths.bookDetail + '/:isbn'} element={<PrivateRoute> <BookDetailPage/> </PrivateRoute>} /> 
           <Route path={config.paths.borrowedBooks} element={<PrivateRoute> <BorrowedBooksPage/> </PrivateRoute>} /> 
           <Route
             path="*"

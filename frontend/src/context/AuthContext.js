@@ -16,8 +16,8 @@ const AuthProvider = ({ children }) => {
   const getUserSessionStorage = ()=>{
     const user = sessionStorage.getItem(userStorage);
     const token = sessionStorage.getItem(tokenStorage);
-    if (user) setUser(user);
-    if (token) setToken(token);
+    if (user) setUser(JSON.parse(user));
+    if (token) setToken(JSON.parse(token));
   }
   const setUserLocalStorage = ({user, token})=>{
     sessionStorage.setItem(userStorage, JSON.stringify(user));

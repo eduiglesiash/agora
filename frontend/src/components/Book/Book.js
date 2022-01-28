@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'wouter';
+import { Link } from 'react-router-dom';
 import './Book.css';
 
 import noImage from "../../assets/images/no-image.jpg";
@@ -10,7 +10,7 @@ export default function Book({title, author, imgURL, leftBooks, isbn}) {
     text: leftBooks === 0 ? 'No disponible' : (leftBooks > 3 ? 'Disponible' : 'Pocas unidades'),
   });
   return (
-    <Link href={`/bookDetail/${isbn}`} className={`a-fade-in Book Book--${status.class} `}>
+    <Link to={`/bookDetail/${isbn}`} className={`a-fade-in Book Book--${status.class} `}>
         <picture className="Book__cover">
           <img src={imgURL || noImage} alt={title} />
         </picture>

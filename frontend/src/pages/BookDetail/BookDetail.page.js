@@ -1,9 +1,8 @@
 import './BookDetail.page.css'
 import React, { useState } from 'react';
 import { getBooksAvaliability, putBook, deleteBook } from '../../api/books.api';
-import { useRoute } from 'wouter';
 import { useEffect } from 'react';
-import { useLocation } from 'wouter';
+import { useNavigate, useParams } from 'react-router-dom';
 import BooksInput from '../Books/BooksInput/BooksInput';
 
 import { borrowedBookUsers, borrowBook } from '../../api/borrowedBooks.api';
@@ -22,14 +21,16 @@ const BookDetailField = ({ label, value }) => {
 }
 
 export default function BookDetailPage() {
-  const [, params] = useRoute("/bookDetail/:isbn");
   const [book, setBook] = useState({});
-  const [, setLocation] = useLocation();
+  const navigate = useNavigate();
   const [modal, setModal] = useState(false);
   const [users, setUsers] = useState([]);
 
+
+  const { isbn } = useParams();
+
   useEffect(() => {
-    getBooksAvaliability(params.isbn)
+    getBooksAvaliability(isbn)
       .then(res => {
         if (res.data.length === 0) {
           alert('El libro no existe en la base de datos');
@@ -38,7 +39,7 @@ export default function BookDetailPage() {
         setBook(res.data[0]);
       })
       .catch(err => console.error(err));
-  }, [params.isbn]);
+  }, [isbn]);
 
   const refreshBookusers = () => {
     borrowedBookUsers({ book: book.isbn })
@@ -60,7 +61,7 @@ export default function BookDetailPage() {
   const removeBook = () => {
     if (window.confirm('¿Estás seguro de eliminar el libro?')) {
       deleteBook(book.id)
-        .then(() => setLocation('/books'))
+        .then(() => navigate('/books'))
         .catch(err => console.error(err));
     }
   }
@@ -69,7 +70,7 @@ export default function BookDetailPage() {
     setModal(!modal);
   }
 
-  const lendBook = ({user}) => {
+  const lendBook = ({ user }) => {
     borrowBook({ book, user })
       .then(res => {
         if (res.status === 200) {
@@ -129,7 +130,7 @@ export default function BookDetailPage() {
         <BookDetailField label='Categoría(s)' value={book.categories} />
         <BookDetailField label='Descripción' value={book.description} />
       </section>
-      { modal && (
+      {modal && (
         <Modal
           title='Selecciona el usuario'
           onClose={toggleModal}

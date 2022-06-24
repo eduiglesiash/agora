@@ -23,7 +23,6 @@ function App() {
       <Menu />
 
       <main className="Main">
-        <ToastContainer autoClose={5000} theme={'colored'} />
         <Routes>
           <Route path={config.paths.login} element={<LoginPage />} />          
           <Route path={config.paths.dashboard} element={<PrivateRoute> <DashboardPage /></PrivateRoute>} />
@@ -41,6 +40,7 @@ function App() {
             }
           />
         </Routes>
+        <ToastContainer autoClose={5000} theme={'dark'} />
       </main>
     </AuthProvider>
   );

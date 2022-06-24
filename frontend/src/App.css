@@ -10,3 +10,8 @@
 .is-collapse .Main {
     padding-left: 70px
 }
+
+/* Toastify button override */
+.Toastify__close-button {
+    flex: 1
+}

@@ -32,6 +32,7 @@ export default function LoginPage() {
   })
   return (
     <section className="Login">
+      <img className="Login__img" src="/mata-de-alcantara-escudo.png" alt='Escudo de Mata de Alcántara' />
       <form className="Login__form" onSubmit={loginUser.handleSubmit}>
         <fieldset>
           <legend className="sr-only">Login</legend>
@@ -51,5 +52,6 @@ export default function LoginPage() {
         <button type="submit" className="a-btn a-btn__action">Acceso a la biblioteca</button>
       </form>
     </section>
+
   )
 }

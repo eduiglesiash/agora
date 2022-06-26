@@ -4,9 +4,8 @@
 
 body {
   margin: 0;
-  font-family: "Open Sans", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -18,9 +17,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   margin: 0;
   font-weight: 700;
 }
@@ -36,8 +34,7 @@ small {
   display: block;
 }
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 p {
@@ -78,9 +75,13 @@ input {
   width: 100%;
   margin-bottom: 20px;
 }
+input[type="radio"] {
+  width: auto;
+  margin: 0;
+}
 input:focus {
   outline: 0;
-  border-color:#0071ff;
+  border-color: #0071ff;
 }
 label {
   display: block;
@@ -94,9 +95,8 @@ label span {
   margin-bottom: 8px;
 }
 textarea {
-  font-family: "Noto Sans Display", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: "Noto Sans Display", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   resize: none;
   width: 100%;
 }
@@ -198,38 +198,38 @@ textarea {
   border: 2px solid #b0b9c1;
 }
 .a-btn__add {
-  background-color: #5AA469;
-  border: 2px solid #5AA469;
+  background-color: #5aa469;
+  border: 2px solid #5aa469;
   border-radius: 50%;
   bottom: 20px;
   height: 46px;
   position: fixed;
   right: 20px;
-  transition: background-color .3s;
+  transition: background-color 0.3s;
   width: 46px;
   z-index: 1;
 }
 .a-btn__add::before,
 .a-btn__add::after {
-    background-color: #efefef;
-    content: '';
-    height: 2px;
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    transition: background-color .3s;
-    width: 20px;
+  background-color: #efefef;
+  content: "";
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: background-color 0.3s;
+  width: 20px;
 }
 .a-btn__add::after {
-    transform: translate(-50%, -50%) rotate(90deg);
+  transform: translate(-50%, -50%) rotate(90deg);
 }
 .a-btn__add:hover {
-    background-color: #efefef;
+  background-color: #efefef;
 }
 .a-btn__add:hover::before,
 .a-btn__add:hover::after {
-    background-color: #5AA469;
+  background-color: #5aa469;
 }
 .a-btn__add.a-btn--blue {
   background-color: #1353a7;
@@ -243,7 +243,7 @@ textarea {
   color: #ffffff;
   font-weight: 700;
   padding: 8px 10px;
-  transition: background-color .3s, color .3s;
+  transition: background-color 0.3s, color 0.3s;
 }
 .a-cta:hover {
   background-color: #ffffff;
@@ -377,7 +377,6 @@ textarea {
 .a-btn__action:hover {
   color: white;
   background-color: #1353a7;
-  
 }
 .a-btn__cancel {
   padding: 8px 24px;
@@ -404,7 +403,7 @@ textarea {
 }
 .a-btn__delete:hover {
   color: white;
-  background-color: #ce2c44
+  background-color: #ce2c44;
 }
 
 /* Box Shadow */
@@ -416,6 +415,13 @@ textarea {
 /* Form  */
 .a-form__legend {
   margin-bottom: 24px;
+  font-size: 28px;
+  font-weight: bold;
+}
+.a-form__legend-radio {
+  margin: 0px;
+  font-size: 20px;
+  font-weight: bold;
 }
 .a-form__success {
   border: 2px solid #5aa469;
@@ -433,6 +439,20 @@ textarea {
   color: #ce2c44;
   font-weight: bold;
   text-align: center;
+}
+.a-form__radio {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+  cursor: pointer;
+  padding-left: 16px;
+  flex: 1 auto;
+}
+.a-form__radio-text {
+  margin: 0;
+  font-weight: 400;
 }
 
 /* Animations */
@@ -473,4 +493,17 @@ textarea {
   100% {
     opacity: 0;
   }
+}
+
+/* Modal Override */
+.ReactModal__Overlay {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.Modal__header {
+  position: absolute;
+  top: 16px;
+  right: 16px;
 }

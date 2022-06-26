@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Book.css';
 
-import noImage from "../../assets/images/no-image.jpg";
-
 export default function Book({title, author, imgURL, leftBooks, isbn}) {
   const [ status ] = useState({
     class: leftBooks === 0 ? 'non-available' : (leftBooks > 3 ? 'available' : 'last-units'),
@@ -12,7 +10,7 @@ export default function Book({title, author, imgURL, leftBooks, isbn}) {
   return (
     <Link to={`/bookDetail/${isbn}`} className={`a-fade-in Book Book--${status.class} `}>
         <picture className="Book__cover">
-          <img src={imgURL || noImage} alt={title} />
+          <img src={imgURL || '/assets/images/no-image.jpg'} alt={title} />
         </picture>
 
         <h3 className="Book__title">

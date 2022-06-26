@@ -5,6 +5,7 @@
     padding-top: 60px;
     padding-left: 165px;
     transition: all 0.2s ease;
+    height: 100vh;
 }
 
 .is-collapse .Main {

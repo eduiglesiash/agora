@@ -10,22 +10,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import classNames from 'classnames';
 import { toast } from 'react-toastify';
 import { config } from '../../config/config';
+import { genericStylesModal } from '../../utils/customStylesModals';
 
-const customStyleModal = {
-  content: {
-    position: 'absolute',
-    padding: '48px',
-    top: '40%',
-    left: '50%',
-    transform: 'translate(-40%, -50%)',
-    display: 'flex',
-    flexDirection: 'column',
-    width: '60%',
-    height: '600px',
-    border: 'none',
-    boxShadow: '0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%)'
-  }
-};
+
 Modal.setAppElement('#root');
 
 export default function UserDetailPage() {
@@ -182,7 +169,7 @@ export default function UserDetailPage() {
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        style={customStyleModal}
+        style={genericStylesModal}
         contentLabel="Zona peligrosa | Borrar usuario"
       >
         <header className="a-flex a-flex-end">

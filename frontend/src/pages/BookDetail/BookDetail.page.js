@@ -9,7 +9,6 @@ import { borrowedBookUsers, borrowBook } from '../../api/borrowedBooks.api';
 
 import Modal from '../../components/Modal/Modal';
 
-import noImage from "../../assets/images/no-image.jpg";
 
 const BookDetailField = ({ label, value }) => {
   return (
@@ -108,7 +107,7 @@ export default function BookDetailPage() {
   return (
     <section className="a-flex">
       <section className="a-p-16 a-flex-basis-25 BookDetailPage__col--left">
-        <img src={book.imgURL || noImage} alt='Portada de libro' />
+        <img src={book.imgURL || 'assets/images/no-image.jpg'} alt='Portada de libro' />
         <form className='a-margin-top-16'>
           <BooksInput
             id='quantity'

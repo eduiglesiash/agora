@@ -4,7 +4,6 @@ import Moment from 'moment';
 
 import { config } from '../../config/config';
 
-import noImage from '../../assets/images/no-image.jpg';
 import './BorrowedBook.css';
 
 Moment.locale('es');
@@ -13,7 +12,7 @@ export default function BorrowedBook({ imgURL, title, date, userId, userName, us
     return (
         <li className='a-fade-in BorrowedBook'>
             <picture className="BorrowedBook__cover">
-                <img src={imgURL || noImage} alt={title} />
+                <img src={imgURL || 'assets/images/no-image.jpg'} alt={title} />
             </picture>
             <h3 className="BorrowedBook__title">{title}</h3>
             <p className="BorrowedBook__date">{Moment(date).format('DD/MM/YYYY')}</p>

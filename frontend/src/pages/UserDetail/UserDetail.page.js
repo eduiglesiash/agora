@@ -1,5 +1,5 @@
 import './UserDetail.page.css';
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import Avatar from '../../components/Avatar/Avatar';
 import Book from '../../components/Book/Book';
 import * as strapi from '../../api/users.api';
@@ -13,21 +13,38 @@ import { config } from '../../config/config';
 import { genericStylesModal } from '../../utils/customStylesModals';
 
 
+
 Modal.setAppElement('#root');
+
+const initialValues = {
+  name: '',
+  surname: '',
+  phone: '',
+  email: ''
+}
 
 export default function UserDetailPage() {
   const [user, setUser] = useState({});
+  const [formModified, setFormModified] = useState(false)
   const [modalIsOpen, setIsOpen] = useState(false);
   const navigation = useNavigate();
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
-
   let { id } = useParams();
 
+  const getUserId = () => {
+    strapi.getUserByID(id)
+      .then(user => {
+        const { name, surname, phone, email } = user.data
+        setUser(user.data);
+        updateFormUser.setValues({ name, surname, phone, email });
+      })
+      .catch(err => toast.error(`${config.toastMessage.getUserByIDError} ${err}`));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }
+
   const formDeleteUser = useFormik({
-    initialValues: {
-      confirm: ''
-    },
+    initialValues: { confirm: '' },
     validate: values => {
       const VALIDATED = 'borrar/usuario';
       const valueFormat = values.confirm.toLowerCase().trim();
@@ -39,10 +56,10 @@ export default function UserDetailPage() {
       }
       return errors;
     },
-    onSubmit: values => {
+    onSubmit: () => {
       console.log(`On Submit`);
       strapi.deleteUser(user.id)
-        .then(user => {
+        .then(() => {
           // console.log({ user })
           navigation(config.paths.users);
           closeModal();
@@ -60,51 +77,40 @@ export default function UserDetailPage() {
   });
 
   const updateFormUser = useFormik({
-    initialValues: {
-      name: '',
-      surname: '',
-      phone: '',
-      email: ''
-    },
-    validate: values => {
-      const errors = {};
+    initialValues,
+    validate: val => {
 
+      const isModified = val.name !== user.name ||
+        val.surname !== user.surname ||
+        val.phone !== user.phone ||
+        val.email !== user.email;
+
+      setFormModified(isModified)
+      const errors = {};
       return errors;
     },
     onSubmit: values => {
       strapi.updateUser({ ...user, ...values })
         .then(userUpdated => {
           setUser(userUpdated.data);
-          toast.success(config.toastMessage.userUpdateSuccess);
+          toast.info(`${config.toastMessage.userUpdateSuccess}`)
         })
         .catch(err => toast.error(`${config.toastMessage.userUpdateError}\n ${err}`));
     },
-    onReset: () => { }
+    onReset: () => {
+      getUserId()
+    }
   });
 
   useEffect(() => {
-    strapi.getUserByID(id)
-      .then(user => {
-        setUser(user.data);
-        updateFormUser.setValues({
-          name: user.data.name,
-          surname: user.data.surname,
-          phone: user.data.phone,
-          email: user.data.email
-        });
-      })
-      .catch(err => toast.error(`${config.toastMessage.getUserByIDError} ${err}`));
+    getUserId()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const isFieldModified = () => {
-    const { name, surname, phone, email } = user;
-    return updateFormUser.values.name !== name || updateFormUser.values.surname !== surname || updateFormUser.values.phone !== phone || updateFormUser.values.email !== email;
-  };
 
   return (
     <>
-      <section className="a-flex a-flex-column">
-        <section className="a-p-16 a-flex-basis-50">
+      <section className="Upd__content">
+        <section className="a-p-16">
           <Avatar thumbnail={user.avatar} />
           <form onSubmit={updateFormUser.handleSubmit} onReset={updateFormUser.handleReset}>
             <fieldset>
@@ -135,34 +141,36 @@ export default function UserDetailPage() {
               </div>
             </fieldset>
             {
-              isFieldModified() &&
-              <>
-                <button type="reset" className="udp__btn udp__btn--cancel a-bk-red">Descartar cambios</button>
-                <button type="submit" className="udp__btn udp__btn--success a-bk-green">Guardar cambios</button>
-              </>
+              formModified &&
+              <div className="Upd__content-btn">
+                <button type="reset" className="Upd__btn Upd__btn--cancel a-bk-red">Descartar cambios</button>
+                <button type="submit" className="Upd__btn Upd__btn--success a-bk-green">Guardar cambios</button>
+              </div>
             }
           </form>
-          <div className="a-flex a-flex-column a-flex-sBetween">
-            <p>112132342-M</p>
-            <p>Desde: 1/Ago/2020</p>
-          </div>
-          <div className="a-flex a-flex-column a-flex-sBetween">
-            <p>Libros totales: 88</p>
-            <p>Libros prestados: 2</p>
-          </div>
-          <div className="a-flex-align-self-center">
-            <h4>Próximo vencimiento: </h4>
-            <ul>
-              <li>4/OCT/2021</li>
-            </ul>
-          </div>
         </section>
-        <section className="a-p-16 a-flex-basis-100">
+        <section className="a-p-16">
+          <ul className="Upd__table">
+            <li>
+              <p>112132342-M</p>
+              <p>Desde: 1/Ago/2020</p>
+            </li>
+            <li>
+              <p>Libros totales: 88</p>
+              <p>Libros prestados: 2</p>
+            </li>
+            <li>
+              <p>Próximo vencimiento: </p>
+              <p>4/OCT/2021</p>
+            </li>
+          </ul>
+        </section>
+        <section className="a-p-16">
           <h2>Libros leídos</h2>
           <Book />
         </section>
       </section>
-      <section className="a-flex a-flex-column a-flex-center a-margin-bottom-16">
+      <section className="Upd__warning-zone a-flex a-flex-column a-flex-center a-margin-bottom-16">
         <h2 className="a-red a-text-center a-margin-bottom-16">Zona peligrosa</h2>
         <button type="button" className="a-btn__delete" onClick={openModal}>Borrar usuario</button>
       </section>

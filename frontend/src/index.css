@@ -507,3 +507,6 @@ textarea {
   top: 16px;
   right: 16px;
 }
+.Modal-form {
+  padding-top: 48px;
+}

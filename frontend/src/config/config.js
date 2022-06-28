@@ -18,6 +18,10 @@ export const config = {
   strapi: {
     path: 'http://localhost:1337'
   },
+  googleApi: {
+    url: `https://www.googleapis.com/books/v1/volumes?q=isbn:`,
+    apiOptions: `&maxResults=1`
+  },
   toastMessage: {
     getUsersError: `No se ha podido establecer conexión con la BBDD correctamente \n`,
     getUserByIDError: `No se ha podido recuperar al información del usuario \n`,

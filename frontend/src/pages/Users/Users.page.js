@@ -37,7 +37,7 @@ export default function UsersPage() {
       isMinor: ''
     });
   }
-  const afterOpenModal = () => {  
+  const afterOpenModal = () => {
     // references are now sync'd and can be accessed.
     console.log(`AfterOpenModal`)
   }
@@ -116,8 +116,7 @@ export default function UsersPage() {
           </button>
         </header>
         <section>
-          <form onSubmit={registerUser.handleSubmit}
-            onReset={registerUser.handleReset}>
+          <form onSubmit={registerUser.handleSubmit} onReset={registerUser.handleReset}>
             <fieldset>
               <legend className="a-text-center a-margin-bottom-16 a-form__legend">Registro de usuarios de la biblioteca</legend>
 

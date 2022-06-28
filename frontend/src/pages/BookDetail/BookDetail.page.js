@@ -4,10 +4,12 @@ import { getBooksAvaliability, putBook, deleteBook } from '../../api/books.api';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import BooksInput from '../Books/BooksInput/BooksInput';
-
 import { borrowedBookUsers, borrowBook } from '../../api/borrowedBooks.api';
+import Modal from 'react-modal'
+import { genericStylesModal } from '../../utils/customStylesModals';
+import { VscChromeClose } from "react-icons/vsc";
 
-import Modal from '../../components/Modal/Modal';
+Modal.setAppElement('#root')
 
 
 const BookDetailField = ({ label, value }) => {
@@ -22,7 +24,13 @@ const BookDetailField = ({ label, value }) => {
 export default function BookDetailPage() {
   const [book, setBook] = useState({});
   const navigate = useNavigate();
-  const [modal, setModal] = useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
+  const afterOpenModal = () => {
+    // references are now sync'd and can be accessed.
+    console.log(`AfterOpenModal`)
+  }
   const [users, setUsers] = useState([]);
 
 
@@ -47,9 +55,9 @@ export default function BookDetailPage() {
   }
 
   useEffect(() => {
-    if (modal)
+    if (modalIsOpen)
       refreshBookusers();
-  }, [modal, book.isbn]);
+  }, [modalIsOpen, book.isbn]);
 
   const updateQuantity = () => {
     putBook(book.id, { quantity: book.quantity })
@@ -65,9 +73,6 @@ export default function BookDetailPage() {
     }
   }
 
-  const toggleModal = () => {
-    setModal(!modal);
-  }
 
   const lendBook = ({ user }) => {
     borrowBook({ book, user })
@@ -83,6 +88,12 @@ export default function BookDetailPage() {
   const ModalContent = () => {
     return (
       <>
+        <header className="Modal__header">
+          <button className="a-btn__icon" onClick={closeModal}>
+            <VscChromeClose size="34px" />
+            <span className="sr-only">Cerrar ventana de dialogo </span>
+          </button>
+        </header>
         <div className='a-flex a-flex-align-item BookDetailPage__modal-header'>
           <div className='a-flex a-flex-basis-25 BookDetailPage__modal-name'><strong>Nombre</strong></div>
           <div className='a-flex a-flex-basis-50 BookDetailPage__modal-surname'><strong>Apellidos</strong></div>
@@ -119,7 +130,7 @@ export default function BookDetailPage() {
             onChange={(e) => setBook({ ...book, quantity: e.target.value })}
           />
           <button className='a-cta Book__cta' type='button' onClick={updateQuantity}>Actualizar cantidad</button>
-          <button className={`a-cta ${book.leftBooks === 0 ? ' a-cta--disabled' : 'a-cta--blue'} a-margin-top-16 Book__cta`} disabled={book.leftBooks === 0} type='button' onClick={toggleModal}>{book.leftBooks > 0 ? 'Prestar libro' : 'Todos prestados'}</button>
+          <button className={`a-cta ${book.leftBooks === 0 ? ' a-cta--disabled' : 'a-cta--blue'} a-margin-top-16 Book__cta`} disabled={book.leftBooks === 0} type='button' onClick={openModal}>{book.leftBooks > 0 ? 'Prestar libro' : 'Todos prestados'}</button>
           <button className='a-cta a-cta--red a-margin-top-16 Book__cta' type='button' onClick={removeBook}>Eliminar libro</button>
         </form>
       </section>
@@ -129,14 +140,16 @@ export default function BookDetailPage() {
         <BookDetailField label='Categoría(s)' value={book.categories} />
         <BookDetailField label='Descripción' value={book.description} />
       </section>
-      {modal && (
-        <Modal
-          title='Selecciona el usuario'
-          onClose={toggleModal}
-        >
-          <ModalContent />
-        </Modal>
-      )}
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={genericStylesModal}
+        contentLabel="Información del usuario"
+      >
+        <ModalContent />
+      </Modal>
+
     </section>
   )
 }
